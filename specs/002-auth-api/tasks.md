@@ -126,21 +126,21 @@
 
 ### Tests for User Story 3
 
-- [ ] T045 [P] [US3] Create contract test for POST /api/auth/logout in backend/tests/contract/test_logout.py
-- [ ] T046 [P] [US3] Create integration test for logout flow in backend/tests/integration/test_logout_flow.py
-- [ ] T047 [P] [US3] Create test for token blacklist validation in backend/tests/unit/test_jwt_service.py
+- [X] T045 [P] [US3] Create contract test for POST /api/auth/logout in backend/tests/contract/test_logout.py
+- [X] T046 [P] [US3] Create integration test for logout flow in backend/tests/integration/test_logout_flow.py
+- [X] T047 [P] [US3] Create test for token blacklist validation in backend/tests/unit/test_jwt_service.py
 
 ### Implementation for User Story 3
 
-- [ ] T048 [P] [US3] Create AccessToken model (token blacklist) in backend/src/models/token.py
-- [ ] T049 [P] [US3] Create database migrations for access_tokens table in backend/src/db/migrations/002_create_access_tokens.py
-- [ ] T050 [P] [US3] Create JWT middleware in backend/src/middleware/auth_middleware.py with token validation
-- [ ] T051 [US3] Implement token blacklist check in backend/src/services/jwt_service.py
-- [ ] T052 [US3] Implement token revocation method in backend/src/services/jwt_service.py
-- [ ] T053 [US3] Create logout endpoint POST /api/auth/logout in backend/src/api/routes/auth.py
-- [ ] T054 [US3] Add JWT dependency injection to logout endpoint in backend/src/api/routes/auth.py
-- [ ] T055 [US3] Add token to blacklist on logout in backend/src/services/auth_service.py
-- [ ] T056 [US3] Add 401 response for invalid/expired token in backend/src/api/routes/auth.py
+- [X] T048 [P] [US3] Create AccessToken model (token blacklist) in backend/src/models/token.py
+- [X] T049 [P] [US3] Create database migrations for access_tokens table in backend/src/db/migrations/002_create_access_tokens.py
+- [X] T050 [P] [US3] Create JWT middleware in backend/src/middleware/auth_middleware.py with token validation
+- [X] T051 [US3] Implement token blacklist check in backend/src/services/jwt_service.py
+- [X] T052 [US3] Implement token revocation method in backend/src/services/jwt_service.py
+- [X] T053 [US3] Create logout endpoint POST /api/auth/logout in backend/src/api/routes/auth.py
+- [X] T054 [US3] Add JWT dependency injection to logout endpoint in backend/src/api/routes/auth.py
+- [X] T055 [US3] Add token to blacklist on logout in backend/src/services/auth_service.py
+- [X] T056 [US3] Add 401 response for invalid/expired token in backend/src/middleware/auth_middleware.py
 
 **Checkpoint**: All user stories should now be independently functional
 

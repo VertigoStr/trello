@@ -5,9 +5,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from typing import Tuple, Optional
 from uuid import UUID
+from datetime import datetime, timedelta
 import logging
 
 from src.models.user import User
+from src.models.token import AccessToken
 from src.services.password_service import hash_password, verify_password, validate_password
 from src.services.jwt_service import jwt_service
 
@@ -130,19 +132,32 @@ class AuthService:
         
         return user, access_token
     
-    async def logout(self, user_id: UUID) -> None:
+    async def logout(self, user_id: UUID, token_jti: Optional[str] = None) -> None:
         """
-        Logout user (add token to blacklist).
-        
+        Logout user and revoke token (add to blacklist).
+
         Args:
             user_id: User's unique identifier
-        
+            token_jti: JWT token ID to revoke
+
         Note:
-        Token blacklist will be implemented in User Story 3.
-        For now, this is a placeholder.
+        Token is added to blacklist to prevent reuse.
+        Blacklisted tokens are automatically cleaned up after expiration.
         """
-        logger.info(f"User logged out: {user_id}")
-        # TODO: Implement token blacklist in US3
+        if token_jti:
+            # Add token to blacklist
+            token = AccessToken(
+                token_jti=token_jti,
+                user_id=user_id,
+                revoked_at=datetime.utcnow(),
+                expires_at=datetime.utcnow() + timedelta(hours=168),  # 7 days
+            )
+            self.db.add(token)
+            await self.db.flush()
+            
+            logger.info(f"Token revoked for user {user_id}: {token_jti}")
+        else:
+            logger.info(f"User logged out (no token JTI provided): {user_id}")
     
     async def _get_user_by_email(self, email: str) -> Optional[User]:
         """Get user by email address."""

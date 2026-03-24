@@ -3,13 +3,16 @@ Authentication routes for registration, login, and logout.
 """
 from fastapi import APIRouter, Depends, HTTPException, status, Request
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import Tuple
+from typing import Tuple, Dict, Any
+from uuid import UUID
+from datetime import datetime, timedelta
 
 from src.db.connection import get_db
 from src.services.auth_service import AuthService
 from src.api.schemas.register import RegisterRequest, RegisterResponse
 from src.api.schemas.login import LoginRequest, LoginResponse
 from src.middleware.rate_limiter import login_rate_limiter
+from src.middleware.auth_middleware import get_current_user
 import logging
 
 logger = logging.getLogger(__name__)
@@ -188,21 +191,29 @@ async def login(
     description="Logout user and invalidate access token.",
 )
 async def logout(
+    current_user: Dict[str, Any] = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
-    # TODO: Add JWT dependency injection in US3
 ) -> dict:
     """
     Logout user.
     
     Requires valid JWT token in Authorization header.
+    Token is added to blacklist and cannot be reused.
     
     Returns:
     - **message**: Success message
     """
-    # TODO: Implement token extraction and validation in US3
     auth_service = AuthService(db)
     
-    # Placeholder - will be implemented in US3
-    # await auth_service.logout(user_id)
+    # Revoke token (add to blacklist)
+    await auth_service.logout(
+        user_id=current_user["user_id"],
+        token_jti=current_user.get("jti"),
+    )
     
-    return {"message": "Successfully logged out"}
+    logger.info(f"User logged out: {current_user['email']} (user_id={current_user['user_id']})")
+    
+    return {
+        "status": "success",
+        "message": "Successfully logged out",
+    }
