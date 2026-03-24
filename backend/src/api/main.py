@@ -8,6 +8,7 @@ from src.db.database import init_db, close_db
 from src.api.router import router
 from src.middleware.error_handler import ErrorHandlerMiddleware
 from src.middleware.request_id import RequestIDMiddleware
+from src.middleware.cors import setup_cors
 import logging
 
 logger = logging.getLogger(__name__)
@@ -41,13 +42,7 @@ def create_app() -> FastAPI:
     )
     
     # Add CORS middleware
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],  # Configure for production
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+    setup_cors(app)
     
     # Add request ID middleware
     app.add_middleware(RequestIDMiddleware)
@@ -57,11 +52,6 @@ def create_app() -> FastAPI:
     
     # Include routers
     app.include_router(router)
-    
-    # Health check endpoint
-    @app.get("/health")
-    async def health_check():
-        return {"status": "healthy"}
     
     return app
 

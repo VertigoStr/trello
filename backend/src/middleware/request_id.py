@@ -15,6 +15,7 @@ class RequestIDMiddleware(BaseHTTPMiddleware):
     - Generated if not present in headers
     - Added to request state for access in handlers
     - Included in response headers
+    - Logged with each log message for tracing
     """
     
     async def dispatch(self, request: Request, call_next) -> Response:

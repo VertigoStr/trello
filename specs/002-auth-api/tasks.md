@@ -150,12 +150,12 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T057 [P] Create health check endpoint GET /health in backend/src/api/routes/health.py
-- [ ] T058 [P] Add CORS middleware in backend/src/middleware/cors.py for frontend integration
-- [ ] T059 [P] Add request ID middleware in backend/src/middleware/request_id.py for tracing
-- [ ] T060 [P] Create API documentation in backend/README.md with usage examples
-- [ ] T061 [P] Add input sanitization utilities in backend/src/utils/sanitization.py
-- [ ] T062 [P] Create database cleanup script for expired tokens in backend/scripts/cleanup_tokens.py
+- [X] T057 [P] Create health check endpoint GET /health in backend/src/api/routes/health.py
+- [X] T058 [P] Add CORS middleware in backend/src/middleware/cors.py for frontend integration
+- [X] T059 [P] Add request ID middleware in backend/src/middleware/request_id.py for tracing
+- [X] T060 [P] Create API documentation in backend/README.md with usage examples
+- [X] T061 [P] Add input sanitization utilities in backend/src/utils/sanitization.py
+- [X] T062 [P] Create database cleanup script for expired tokens in backend/scripts/cleanup_tokens.py
 - [ ] T063 [P] Add performance monitoring decorators in backend/src/utils/monitoring.py
 - [ ] T064 Run full integration test suite
 - [ ] T065 Run quickstart.md validation (follow all steps end-to-end)

@@ -3,12 +3,16 @@ API router configuration with /api/auth prefix.
 """
 from fastapi import APIRouter
 from src.api.routes.auth import router as auth_router
+from src.api.routes.health import router as health_router
 
 # Create main router
 router = APIRouter()
 
 # Include auth routes
 router.include_router(auth_router)
+
+# Include health routes
+router.include_router(health_router)
 
 
 @router.get("/")
