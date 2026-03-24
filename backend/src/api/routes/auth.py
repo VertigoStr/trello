@@ -1,7 +1,7 @@
 """
 Authentication routes for registration, login, and logout.
 """
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Tuple
 
@@ -9,6 +9,7 @@ from src.db.connection import get_db
 from src.services.auth_service import AuthService
 from src.api.schemas.register import RegisterRequest, RegisterResponse
 from src.api.schemas.login import LoginRequest, LoginResponse
+from src.middleware.rate_limiter import login_rate_limiter
 import logging
 
 logger = logging.getLogger(__name__)
@@ -98,7 +99,8 @@ async def register(
     description="Authenticate user with email and password.",
 )
 async def login(
-    request: LoginRequest,
+    request: Request,
+    login_data: LoginRequest,
     db: AsyncSession = Depends(get_db),
 ) -> LoginResponse:
     """
@@ -106,6 +108,8 @@ async def login(
     
     - **email**: User's email address
     - **password**: User's password
+    
+    Rate limiting: 5 attempts per 15 minutes per email.
     
     Returns:
     - **user_id**: User's unique identifier
@@ -115,15 +119,36 @@ async def login(
     - **token_type**: Token type (Bearer)
     - **expires_in**: Token expiration time in seconds
     """
+    # Apply rate limiting
+    client_ip = request.client.host if request.client else "unknown"
+    rate_limit_key = f"login:{login_data.email}"
+    
+    is_allowed, remaining = login_rate_limiter.is_allowed(rate_limit_key)
+    
+    if not is_allowed:
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail={
+                "code": "RATE_LIMIT_EXCEEDED",
+                "message": "Too many login attempts. Please try again later.",
+            },
+            headers={
+                "X-RateLimit-Limit": "5",
+                "X-RateLimit-Remaining": "0",
+                "X-RateLimit-Reset": "900",  # 15 minutes
+            },
+        )
+    
     auth_service = AuthService(db)
     
     try:
         user, access_token = await auth_service.login(
-            email=request.email,
-            password=request.password,
+            email=login_data.email,
+            password=login_data.password,
         )
         
-        return LoginResponse(
+        # Add rate limit headers to successful response
+        response = LoginResponse(
             user_id=user.id,
             email=user.email,
             name=user.name,
@@ -131,6 +156,8 @@ async def login(
             token_type="Bearer",
             expires_in=604800,  # 7 days in seconds
         )
+        
+        return response
     
     except ValueError as e:
         error_msg = str(e)
@@ -141,6 +168,7 @@ async def login(
                 detail={
                     "code": "ACCOUNT_LOCKED",
                     "message": "Account is locked due to too many failed login attempts",
+                    "locked_until": getattr(auth_service, 'locked_until', None),
                 },
             )
         else:

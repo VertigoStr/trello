@@ -95,24 +95,24 @@
 
 ### Tests for User Story 2
 
-- [ ] T030 [P] [US2] Create contract test for POST /api/auth/login in backend/tests/contract/test_login.py
-- [ ] T031 [P] [US2] Create integration test for successful login in backend/tests/integration/test_login_flow.py
-- [ ] T032 [P] [US2] Create test for invalid credentials in backend/tests/unit/test_auth_service.py
-- [ ] T033 [P] [US2] Create test for rate limiting in backend/tests/unit/test_rate_limiter.py
+- [X] T030 [P] [US2] Create contract test for POST /api/auth/login in backend/tests/contract/test_login.py
+- [X] T031 [P] [US2] Create integration test for successful login in backend/tests/integration/test_login_flow.py
+- [X] T032 [P] [US2] Create test for invalid credentials in backend/tests/unit/test_auth_service.py
+- [X] T033 [P] [US2] Create test for rate limiting in backend/tests/unit/test_rate_limiter.py
 
 ### Implementation for User Story 2
 
-- [ ] T034 [P] [US2] Create login request schema in backend/src/api/schemas/login.py
-- [ ] T035 [P] [US2] Create login response schema in backend/src/api/schemas/login.py
-- [ ] T036 [P] [US2] Create in-memory rate limiter in backend/src/middleware/rate_limiter.py with sliding window
-- [ ] T037 [US2] Implement login service method in backend/src/services/auth_service.py with password verification
-- [ ] T038 [US2] Implement account lockout logic in backend/src/services/auth_service.py (5 attempts, 15 min lock)
-- [ ] T039 [US2] Create login endpoint POST /api/auth/login in backend/src/api/routes/auth.py
-- [ ] T040 [US2] Add rate limiting to login endpoint in backend/src/api/routes/auth.py (5 requests per 15 min per email)
-- [ ] T041 [US2] Add failed login attempt tracking in backend/src/models/user.py
-- [ ] T042 [US2] Add 401 response for invalid credentials in backend/src/api/routes/auth.py
-- [ ] T043 [US2] Add 423 response for locked account in backend/src/api/routes/auth.py
-- [ ] T044 [US2] Add structured logging for login attempts in backend/src/services/auth_service.py
+- [X] T034 [P] [US2] Create login request schema in backend/src/api/schemas/login.py
+- [X] T035 [P] [US2] Create login response schema in backend/src/api/schemas/login.py
+- [X] T036 [P] [US2] Create in-memory rate limiter in backend/src/middleware/rate_limiter.py with sliding window
+- [X] T037 [US2] Implement login service method in backend/src/services/auth_service.py with password verification
+- [X] T038 [US2] Implement account lockout logic in backend/src/services/auth_service.py (5 attempts, 15 min lock)
+- [X] T039 [US2] Create login endpoint POST /api/auth/login in backend/src/api/routes/auth.py
+- [X] T040 [US2] Add rate limiting to login endpoint in backend/src/api/routes/auth.py (5 requests per 15 min per email)
+- [X] T041 [US2] Add failed login attempt tracking in backend/src/models/user.py
+- [X] T042 [US2] Add 401 response for invalid credentials in backend/src/api/routes/auth.py
+- [X] T043 [US2] Add 423 response for locked account in backend/src/api/routes/auth.py
+- [X] T044 [US2] Add structured logging for login attempts in backend/src/services/auth_service.py
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
