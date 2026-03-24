@@ -13,11 +13,11 @@ logger = logging.getLogger(__name__)
 
 class ErrorResponse:
     """Standard error response format."""
-    
+
     def __init__(
         self,
-        status: str = "error",
         error: dict,
+        status: str = "error",
     ):
         self.status = status
         self.error = error
