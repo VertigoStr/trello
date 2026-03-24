@@ -1,50 +1,109 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+SYNC IMPACT REPORT
+==================
+Version change: 0.0.0 → 1.0.0 (initial)
+Modified principles: N/A (initial creation)
+Added sections:
+  - Core Principles (3 principles: Test-First, Library-First, Simplicity)
+  - Development Workflow
+  - Governance
+Removed sections: N/A
+Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md (Constitution Check section compatible)
+  - ✅ .specify/templates/spec-template.md (no constitution-specific constraints)
+  - ✅ .specify/templates/tasks-template.md (supports TDD workflow)
+  - ✅ .qwen/commands/speckit.constitution.md (this command file)
+Follow-up TODOs: None
+-->
+
+# Trello Clone Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Test-First (NON-NEGOTIABLE)
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+TDD mandatory для всего кода приложения.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+**Правила**:
+- Тесты пишутся ДО реализации функциональности
+- Пользователь утверждает тесты → Тесты падают → Затем реализация
+- Цикл Red-Green-Refactor строго соблюдается
+- Никакой код не мержится без покрывающих тестов
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: Гарантирует надёжность кода, предотвращает регрессии, обеспечивает уверенность при рефакторинге.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. Library-First
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Каждый компонент — самодостаточная, изолированная библиотека.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**Правила**:
+- Библиотеки должны быть самодостаточными и независимо тестируемыми
+- Чёткое разделение ответственности между модулями
+- Минимизация зависимостей между компонентами
+- Документирование публичного API каждой библиотеки
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Rationale**: Упрощает тестирование, повторное использование, поддержку и масштабирование кодовой базы.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### III. Simplicity (YAGNI)
+
+Начинать с простого решения, избегать излишней сложности.
+
+**Правила**:
+- Не добавлять функциональность «про запас»
+- Выбирать простейшее рабочее решение
+- Рефакторить только при появлении дублирования
+- Избегать преждевременной оптимизации и абстракций
+
+**Rationale**: Экономит время разработки, снижает когнитивную нагрузку, упрощает поддержку.
+
+## Development Workflow
+
+**Структура проекта** (веб-приложение):
+
+```text
+backend/
+├── src/
+│   ├── models/
+│   ├── services/
+│   └── api/
+└── tests/
+    ├── contract/
+    ├── integration/
+    └── unit/
+
+frontend/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   └── services/
+└── tests/
+```
+
+**Процесс разработки**:
+1. Получить задачу → Написать тесты (Red)
+2. Убедиться, что тесты падают
+3. Реализовать минимум кода для прохождения тестов (Green)
+4. Рефакторинг с сохранением зелёных тестов (Refactor)
+5. Code review с проверкой соблюдения принципов конституции
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Конституция имеет приоритет над всеми другими практиками разработки.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Правила**:
+- Все PR/review должны проверять соблюдение принципов конституции
+- Нарушения принципов должны быть явно обоснованы в PR
+- Сложность должна быть оправдана конкретными требованиями
+
+**Процесс внесения изменений**:
+1. Предложить изменение с обоснованием
+2. Обсуждение с командой (минимум 24 часа)
+3. Обновить версию согласно семантическому версионированию
+4. Задокументировать изменения в Sync Impact Report
+
+**Версионирование**:
+- MAJOR: Обратной несовместимые изменения принципов
+- MINOR: Добавление новых принципов/секций
+- PATCH: Уточнения, исправления формулировок
+
+**Version**: 1.0.0 | **Ratified**: 2026-03-24 | **Last Amended**: 2026-03-24

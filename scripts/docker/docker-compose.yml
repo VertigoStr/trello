@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+  # PostgreSQL - основная база данных
+  postgres:
+    image: postgres:15-alpine
+    container_name: trello-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: trello
+      POSTGRES_USER: trello
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-trello_dev}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/docker/init-db.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trello -d trello"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - trello-network
+
+  # Redis - кэш и очереди
+  redis:
+    image: redis:7-alpine
+    container_name: trello-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - trello-network
+
+  # Backend (будет добавлен в следующей фиче)
+  # backend:
+  #   build:
+  #     context: ../backend
+  #     dockerfile: Dockerfile
+  #   container_name: trello-backend
+  #   restart: unless-stopped
+  #   environment:
+  #     DATABASE_URL: postgresql://trello:trello_dev@postgres:5432/trello
+  #     REDIS_URL: redis://redis:6379
+  #     ENVIRONMENT: development
+  #   ports:
+  #     - "${BACKEND_PORT:-8000}:8000"
+  #   volumes:
+  #     - ../backend:/app
+  #     - backend_modules:/app/node_modules
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #   networks:
+  #     - trello-network
+
+  # Frontend (будет добавлен в следующей фиче)
+  # frontend:
+  #   build:
+  #     context: ../frontend
+  #     dockerfile: Dockerfile
+  #   container_name: trello-frontend
+  #   restart: unless-stopped
+  #   environment:
+  #     REACT_APP_API_URL: http://localhost:${BACKEND_PORT:-8000}
+  #   ports:
+  #     - "${FRONTEND_PORT:-3000}:3000"
+  #   volumes:
+  #     - ../frontend:/app
+  #     - frontend_modules:/app/node_modules
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - trello-network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  # backend_modules:
+  #   driver: local
+  # frontend_modules:
+  #   driver: local
+
+networks:
+  trello-network:
+    driver: bridge
