@@ -64,24 +64,24 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T015 [P] [US1] Create contract test for POST /api/auth/register in backend/tests/contract/test_register.py
-- [ ] T016 [P] [US1] Create integration test for successful registration in backend/tests/integration/test_register_flow.py
-- [ ] T017 [P] [US1] Create test for duplicate email validation in backend/tests/unit/test_user_validation.py
+- [X] T015 [P] [US1] Create contract test for POST /api/auth/register in backend/tests/contract/test_register.py
+- [X] T016 [P] [US1] Create integration test for successful registration in backend/tests/integration/test_register_flow.py
+- [X] T017 [P] [US1] Create test for duplicate email validation in backend/tests/unit/test_user_validation.py
 
 ### Implementation for User Story 1
 
-- [ ] T018 [P] [US1] Create User model in backend/src/models/user.py with all fields from data-model.md
-- [ ] T019 [P] [US1] Create database migrations for users table in backend/src/db/migrations/001_create_users.py
-- [ ] T020 [P] [US1] Create password hashing service in backend/src/services/password_service.py with bcrypt
-- [ ] T021 [P] [US1] Create JWT service in backend/src/services/jwt_service.py with token generation and validation
-- [ ] T022 [US1] Create registration request schema in backend/src/api/schemas/register.py with Pydantic validation
-- [ ] T023 [US1] Create registration response schema in backend/src/api/schemas/register.py
-- [ ] T024 [US1] Implement registration service in backend/src/services/auth_service.py with email uniqueness check
-- [ ] T025 [US1] Implement password validation logic in backend/src/services/password_service.py (8 chars, letters + digits)
-- [ ] T026 [US1] Create registration endpoint POST /api/auth/register in backend/src/api/routes/auth.py
-- [ ] T027 [US1] Add error handling for duplicate email in backend/src/api/routes/auth.py with 409 response
-- [ ] T028 [US1] Add error handling for validation errors in backend/src/api/routes/auth.py with 400 response
-- [ ] T029 [US1] Add structured logging for registration events in backend/src/services/auth_service.py
+- [X] T018 [P] [US1] Create User model in backend/src/models/user.py with all fields from data-model.md
+- [X] T019 [P] [US1] Create database migrations for users table in backend/src/db/migrations/001_create_users.py
+- [X] T020 [P] [US1] Create password hashing service in backend/src/services/password_service.py with bcrypt
+- [X] T021 [P] [US1] Create JWT service in backend/src/services/jwt_service.py with token generation and validation
+- [X] T022 [US1] Create registration request schema in backend/src/api/schemas/register.py with Pydantic validation
+- [X] T023 [US1] Create registration response schema in backend/src/api/schemas/register.py
+- [X] T024 [US1] Implement registration service in backend/src/services/auth_service.py with email uniqueness check
+- [X] T025 [US1] Implement password validation logic in backend/src/services/password_service.py (8 chars, letters + digits)
+- [X] T026 [US1] Create registration endpoint POST /api/auth/register in backend/src/api/routes/auth.py
+- [X] T027 [US1] Add error handling for duplicate email in backend/src/api/routes/auth.py with 409 response
+- [X] T028 [US1] Add error handling for validation errors in backend/src/api/routes/auth.py with 400 response
+- [X] T029 [US1] Add structured logging for registration events in backend/src/services/auth_service.py
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 

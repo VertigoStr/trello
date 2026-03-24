@@ -55,6 +55,9 @@ async def init_db() -> None:
     Initialize database tables.
     Call this on application startup.
     """
+    # Import models to ensure they are registered with Base
+    from src.models import User  # noqa: F401
+    
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
