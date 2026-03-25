@@ -320,3 +320,36 @@ class TaskService:
         logger.info(f"Task unassigned: {task.title} (id={task_id})")
 
         return task
+
+    async def renumber_positions(
+        self,
+        column_id: UUID,
+    ) -> int:
+        """
+        Renumber task positions in a column to ensure proper ordering.
+
+        This is useful when float precision issues arise from repeated
+        insertions between positions.
+
+        Args:
+            column_id: UUID of the column to renumber
+
+        Returns:
+            Number of tasks renumbered
+        """
+        result = await self.db.execute(
+            select(Task)
+            .where(Task.column_id == column_id, Task.is_deleted == False)
+            .order_by(Task.position.asc())
+        )
+        tasks = result.scalars().all()
+
+        # Renumber tasks with integer positions (1.0, 2.0, 3.0, ...)
+        for i, task in enumerate(tasks, 1):
+            task.position = float(i)
+
+        await self.db.flush()
+
+        logger.info(f"Renumbered {len(tasks)} tasks in column {column_id}")
+
+        return len(tasks)

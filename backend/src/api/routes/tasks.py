@@ -102,6 +102,7 @@ async def list_tasks(
 @router.get("/tasks/{task_id}", response_model=TaskResponse)
 async def get_task(
     task_id: UUID,
+    if_none_match: Optional[str] = Header(None, alias="If-None-Match"),
     db: AsyncSession = Depends(get_db),
     current_user_id: UUID = Depends(get_current_user_id),
 ):
@@ -109,6 +110,7 @@ async def get_task(
     Get a task by ID.
 
     - **task_id**: UUID of the task
+    - **If-None-Match**: ETag for conditional request (returns 304 if unchanged)
     """
     task_service = TaskService(db)
 
@@ -119,7 +121,17 @@ async def get_task(
     if task is None:
         raise HTTPException(status_code=404, detail="Task not found")
 
-    return task
+    # Generate ETag from version
+    etag = f'"{task.version}"'
+
+    # Check If-None-Match for 304 response
+    if if_none_match and if_none_match == etag:
+        return Response(status_code=304)
+
+    # Return task with ETag header
+    response = Response(content=task.model_dump_json())
+    response.headers["ETag"] = etag
+    return response
 
 
 @router.put("/tasks/{task_id}", response_model=TaskResponse)
