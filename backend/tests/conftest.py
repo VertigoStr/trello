@@ -4,7 +4,7 @@ Test configuration and fixtures.
 import pytest
 import asyncio
 from typing import AsyncGenerator, Generator
-from httpx import AsyncClient
+from httpx import AsyncClient, ASGITransport
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy.pool import StaticPool
 
@@ -73,7 +73,7 @@ async def client(test_session) -> AsyncGenerator[AsyncClient, None]:
     
     app.dependency_overrides[get_db] = override_get_db
     
-    async with AsyncClient(app=app, base_url="http://test") as ac:
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
         yield ac
     
     app.dependency_overrides.clear()
@@ -83,3 +83,20 @@ async def client(test_session) -> AsyncGenerator[AsyncClient, None]:
 def auth_headers(token: str) -> dict:
     """Create authorization headers."""
     return {"Authorization": f"Bearer {token}"}
+
+
+@pytest.fixture
+def token() -> str:
+    """Create a fake JWT token for testing."""
+    import jwt
+    from datetime import datetime, timedelta
+    
+    payload = {
+        "sub": "test-user-uuid",
+        "email": "test@example.com",
+        "iat": datetime.utcnow(),
+        "exp": datetime.utcnow() + timedelta(hours=168),
+        "type": "access",
+    }
+    
+    return jwt.encode(payload, "test-secret-key", algorithm="HS256")

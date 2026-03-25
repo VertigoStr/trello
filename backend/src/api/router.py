@@ -4,6 +4,7 @@ API router configuration with /api/auth prefix.
 from fastapi import APIRouter
 from src.api.routes.auth import router as auth_router
 from src.api.routes.health import router as health_router
+from src.api.routes.boards import router as boards_router
 
 # Create main router
 router = APIRouter()
@@ -13,6 +14,9 @@ router.include_router(auth_router)
 
 # Include health routes
 router.include_router(health_router)
+
+# Include boards routes with /api prefix
+router.include_router(boards_router, prefix="/api")
 
 
 @router.get("/")

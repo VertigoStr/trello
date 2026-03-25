@@ -1,6 +1,8 @@
 """
 Column model for organizing tasks on a board.
 """
+from typing import TYPE_CHECKING
+
 from sqlalchemy import Column, String, DateTime, ForeignKey, Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
@@ -21,7 +23,7 @@ class Column(BaseModel):
     
     # Board reference
     board_id: Mapped[UUID] = mapped_column(
-        ForeignKey("columns.id", ondelete="CASCADE"),
+        ForeignKey("boards.id", ondelete="CASCADE"),
         nullable=False,
         index=True,
     )

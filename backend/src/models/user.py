@@ -64,6 +64,10 @@ class User(BaseModel):
         Index("idx_users_is_active", "is_active"),
     )
     
+    # Relationships (deferred for circular import)
+    # boards: Mapped[list["Board"]] = relationship("Board", back_populates="owner")
+    # tasks: Mapped[list["Task"]] = relationship("Task", back_populates="assignee")
+    
     def __repr__(self) -> str:
         return f"<User(id={self.id}, email={self.email})>"
     

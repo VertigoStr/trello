@@ -2,7 +2,7 @@
 Request ID middleware for tracing and logging.
 """
 from fastapi import Request
-from fastapi.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import Response
 import uuid
 

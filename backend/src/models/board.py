@@ -1,6 +1,8 @@
 """
 Board model for task boards management.
 """
+from typing import TYPE_CHECKING
+
 from sqlalchemy import Column, String, DateTime, ForeignKey, Index, Enum as SQLEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime

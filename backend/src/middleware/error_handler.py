@@ -3,7 +3,7 @@ Error handling middleware with standard error response format.
 """
 from fastapi import Request, HTTPException
 from fastapi.responses import JSONResponse
-from fastapi.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import Response
 import logging
 from typing import Optional
