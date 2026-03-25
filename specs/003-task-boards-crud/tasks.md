@@ -98,12 +98,12 @@
 
 ### Implementation for User Story 2
 
-- [ ] T030 [P] [US2] Create pagination schema in backend/src/api/schemas/board.py
-- [ ] T031 [P] [US2] Implement list_boards method in backend/src/services/board_service.py with pagination
-- [ ] T032 [US2] Create boards list endpoint GET /api/boards in backend/src/api/routes/boards.py
-- [ ] T033 [US2] Add query parameters handling (page, limit, status) in backend/src/api/routes/boards.py
-- [ ] T034 [US2] Implement boards filtering by user access (owner or member) in backend/src/services/board_service.py
-- [ ] T035 [US2] Add pagination metadata to response in backend/src/api/routes/boards.py
+- [X] T030 [P] [US2] Create pagination schema in backend/src/api/schemas/board.py
+- [X] T031 [P] [US2] Implement list_boards method in backend/src/services/board_service.py with pagination
+- [X] T032 [US2] Create boards list endpoint GET /api/boards in backend/src/api/routes/boards.py
+- [X] T033 [US2] Add query parameters handling (page, limit, status) in backend/src/api/routes/boards.py
+- [X] T034 [US2] Implement boards filtering by user access (owner or member) in backend/src/services/board_service.py
+- [X] T035 [US2] Add pagination metadata to response in backend/src/api/routes/boards.py
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -123,14 +123,14 @@
 
 ### Implementation for User Story 3
 
-- [ ] T039 [P] [US3] Create Column schema in backend/src/api/schemas/column.py
-- [ ] T040 [P] [US3] Create Task schema in backend/src/api/schemas/task.py
-- [ ] T041 [P] [US3] Implement get_board_details method in backend/src/services/board_service.py with columns and tasks
-- [ ] T042 [US3] Create board details endpoint GET /api/boards/{id} in backend/src/api/routes/boards.py
-- [ ] T043 [US3] Add permission check for board access in backend/src/services/permission_service.py
-- [ ] T044 [US3] Add 403 response for access denied in backend/src/api/routes/boards.py
-- [ ] T045 [US3] Add 404 response for board not found in backend/src/api/routes/boards.py
-- [ ] T046 [US3] Implement nested loading of columns and tasks in backend/src/services/board_service.py
+- [X] T039 [P] [US3] Create Column schema in backend/src/api/schemas/column.py
+- [X] T040 [P] [US3] Create Task schema in backend/src/api/schemas/task.py
+- [X] T041 [P] [US3] Implement get_board_details method in backend/src/services/board_service.py with columns and tasks
+- [X] T042 [US3] Create board details endpoint GET /api/boards/{id} in backend/src/api/routes/boards.py
+- [X] T043 [US3] Add permission check for board access in backend/src/services/permission_service.py
+- [X] T044 [US3] Add 403 response for access denied in backend/src/api/routes/boards.py
+- [X] T045 [US3] Add 404 response for board not found in backend/src/api/routes/boards.py
+- [X] T046 [US3] Implement nested loading of columns and tasks in backend/src/services/board_service.py
 
 **Checkpoint**: At this point, User Stories 1, 2, AND 3 should all work independently
 
@@ -150,13 +150,13 @@
 
 ### Implementation for User Story 4
 
-- [ ] T050 [P] [US4] Create board update schema in backend/src/api/schemas/board.py
-- [ ] T051 [P] [US4] Implement update_board method in backend/src/services/board_service.py
-- [ ] T052 [US4] Create board update endpoint PUT /api/boards/{id} in backend/src/api/routes/boards.py
-- [ ] T053 [US4] Add owner-only permission check in backend/src/services/permission_service.py
-- [ ] T054 [US4] Add 403 response for non-owner in backend/src/api/routes/boards.py
-- [ ] T055 [US4] Add validation for updated fields in backend/src/api/schemas/board.py
-- [ ] T056 [US4] Add updated_at timestamp update in backend/src/services/board_service.py
+- [X] T050 [P] [US4] Create board update schema in backend/src/api/schemas/board.py
+- [X] T051 [P] [US4] Implement update_board method in backend/src/services/board_service.py
+- [X] T052 [US4] Create board update endpoint PUT /api/boards/{id} in backend/src/api/routes/boards.py
+- [X] T053 [US4] Add owner-only permission check in backend/src/services/permission_service.py
+- [X] T054 [US4] Add 403 response for non-owner in backend/src/api/routes/boards.py
+- [X] T055 [US4] Add validation for updated fields in backend/src/api/schemas/board.py
+- [X] T056 [US4] Add updated_at timestamp update in backend/src/services/board_service.py
 
 **Checkpoint**: At this point, User Stories 1-4 should all work independently
 
@@ -176,12 +176,12 @@
 
 ### Implementation for User Story 5
 
-- [ ] T060 [P] [US5] Implement delete_board method in backend/src/services/board_service.py with cascade delete
-- [ ] T061 [US5] Create board delete endpoint DELETE /api/boards/{id} in backend/src/api/routes/boards.py
-- [ ] T062 [US5] Add owner-only permission check for delete in backend/src/services/permission_service.py
-- [ ] T063 [US5] Add 204 No Content response for successful delete in backend/src/api/routes/boards.py
-- [ ] T064 [US5] Add cascade delete configuration in models (relationships) in backend/src/models/board.py
-- [ ] T065 [US5] Add structured logging for board deletion in backend/src/services/board_service.py
+- [X] T060 [P] [US5] Implement delete_board method in backend/src/services/board_service.py with cascade delete
+- [X] T061 [US5] Create board delete endpoint DELETE /api/boards/{id} in backend/src/api/routes/boards.py
+- [X] T062 [US5] Add owner-only permission check for delete in backend/src/services/permission_service.py
+- [X] T063 [US5] Add 204 No Content response for successful delete in backend/src/api/routes/boards.py
+- [X] T064 [US5] Add cascade delete configuration in models (relationships) in backend/src/models/board.py
+- [X] T065 [US5] Add structured logging for board deletion in backend/src/services/board_service.py
 
 **Checkpoint**: At this point, User Stories 1-5 should all work independently
 
