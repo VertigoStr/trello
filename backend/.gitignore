@@ -51,3 +51,5 @@ htmlcov/
 # Database
 *.db
 *.sqlite
+*.pyc
+__pycache__/
