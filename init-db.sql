@@ -1,4 +1,35 @@
--- Create boards table
+-- Migration 001: Create users table
+CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE NOT NULL,
+    failed_login_attempts INTEGER DEFAULT 0 NOT NULL,
+    locked_until TIMESTAMP,
+    created_at TIMESTAMP DEFAULT NOW() NOT NULL,
+    updated_at TIMESTAMP DEFAULT NOW() NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_users_is_active ON users(is_active);
+
+-- Migration 002: Create access_tokens table
+CREATE TABLE IF NOT EXISTS access_tokens (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    token_jti UUID UNIQUE NOT NULL,
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    revoked_at TIMESTAMP DEFAULT NOW() NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW() NOT NULL,
+    updated_at TIMESTAMP DEFAULT NOW() NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_token_jti ON access_tokens(token_jti);
+CREATE INDEX IF NOT EXISTS idx_token_user_id ON access_tokens(user_id);
+CREATE INDEX IF NOT EXISTS idx_token_expires_at ON access_tokens(expires_at);
+
+-- Migration 003: Create boards table
 CREATE TABLE IF NOT EXISTS boards (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title VARCHAR(255) NOT NULL,
