@@ -10,6 +10,9 @@ Authentication and Registration API for Trello Clone application.
 - Rate limiting for login attempts
 - Account lockout after failed attempts
 - Token blacklist for revoked tokens
+- **Task Boards CRUD**: Create, read, update, delete boards with flexible permissions
+- **Task Management**: Create, read, update, move, delete tasks with optimistic locking
+- **Board Members**: Add, remove, and manage member roles and permissions
 
 ## Tech Stack
 
@@ -245,6 +248,72 @@ backend/
 ├── requirements.txt
 ├── pytest.ini
 └── .env.example
+```
+
+## Tasks API Examples
+
+### Create a Task
+
+```bash
+curl -X POST "http://localhost:8000/api/boards/{board_id}/columns/{column_id}/tasks" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Implement feature",
+    "description": "Add task creation API endpoint",
+    "assignee_id": "550e8400-e29b-41d4-a716-446655440000"
+  }'
+```
+
+### List Tasks with Pagination
+
+```bash
+curl -X GET "http://localhost:8000/api/boards/{board_id}/tasks?page=1&limit=20" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+```
+
+### Update a Task (with Optimistic Locking)
+
+```bash
+# Get current ETag from response headers
+curl -X GET "http://localhost:8000/api/tasks/{task_id}" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+
+# Update with If-Match header
+curl -X PUT "http://localhost:8000/api/tasks/{task_id}" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "If-Match: \"1\"" \
+  -d '{
+    "title": "Updated title",
+    "description": "Updated description"
+  }'
+```
+
+### Move a Task
+
+```bash
+curl -X POST "http://localhost:8000/api/tasks/{task_id}/move" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "column_id": "new-column-uuid",
+    "position": 2.5
+  }'
+```
+
+### Delete a Task (Soft Delete)
+
+```bash
+curl -X DELETE "http://localhost:8000/api/tasks/{task_id}" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+```
+
+### Unassign from Task
+
+```bash
+curl -X POST "http://localhost:8000/api/tasks/{task_id}/unassign" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
 ```
 
 ## License
