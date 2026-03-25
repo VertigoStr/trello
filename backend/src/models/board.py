@@ -3,19 +3,12 @@ Board model for task boards management.
 """
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Column, String, DateTime, ForeignKey, Index, Enum as SQLEnum
+from sqlalchemy import Column, String, DateTime, ForeignKey, Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
 from uuid import UUID, uuid4
-import enum
 
 from src.db.base import BaseModel
-
-
-class BoardStatus(enum.Enum):
-    """Board status enumeration."""
-    ACTIVE = "active"
-    ARCHIVED = "archived"
 
 
 class Board(BaseModel):
@@ -49,9 +42,9 @@ class Board(BaseModel):
     )
     
     # Board status
-    status: Mapped[BoardStatus] = mapped_column(
-        SQLEnum(BoardStatus),
-        default=BoardStatus.ACTIVE,
+    status: Mapped[str] = mapped_column(
+        String(20),
+        default="active",
         nullable=False,
         index=True,
     )

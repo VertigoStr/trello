@@ -26,8 +26,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy installed packages from builder
 COPY --from=builder /root/.local /root/.local
 
-# Copy application code
+# Copy application code and .env
 COPY backend/src ./src
+COPY backend/.env ./.env
 
 # Add local packages to PATH
 ENV PATH=/root/.local/bin:$PATH

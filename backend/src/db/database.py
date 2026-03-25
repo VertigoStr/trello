@@ -1,12 +1,16 @@
 """
 Database configuration for SQLAlchemy async engine.
 """
+import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import declarative_base
 from typing import AsyncGenerator
 
 # Database URL from environment
-DATABASE_URL = "postgresql+asyncpg://trello:trello_dev@localhost:5432/trello"
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql+asyncpg://trello:trello_dev@postgres:5432/trello"
+).replace("postgresql://", "postgresql+asyncpg://")
 
 # Create async engine
 engine = create_async_engine(
@@ -56,7 +60,8 @@ async def init_db() -> None:
     Call this on application startup.
     """
     # Import models to ensure they are registered with Base
-    from src.models import User  # noqa: F401
+    # Only import models that exist in this codebase
+    from src.models import Board, BoardMember, Column, Task  # noqa: F401
     
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)

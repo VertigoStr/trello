@@ -8,8 +8,10 @@ from uuid import UUID
 from datetime import datetime
 import logging
 
-from src.models.board import Board, BoardStatus
+from src.models.board import Board
 from src.models.board_member import BoardMember
+
+BoardStatus = str
 
 logger = logging.getLogger(__name__)
 
@@ -54,7 +56,7 @@ class BoardService:
             title=title,
             description=description,
             owner_id=owner_id,
-            status=BoardStatus.ACTIVE,
+            status="active",
         )
         
         self.db.add(board)
