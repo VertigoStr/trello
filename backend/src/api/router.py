@@ -5,6 +5,7 @@ from fastapi import APIRouter
 from src.api.routes.auth import router as auth_router
 from src.api.routes.health import router as health_router
 from src.api.routes.boards import router as boards_router
+from src.api.routes.board_members import router as board_members_router
 
 # Create main router
 router = APIRouter()
@@ -17,6 +18,9 @@ router.include_router(health_router)
 
 # Include boards routes with /api prefix
 router.include_router(boards_router, prefix="/api")
+
+# Include board members routes with /api prefix
+router.include_router(board_members_router, prefix="/api")
 
 
 @router.get("/")

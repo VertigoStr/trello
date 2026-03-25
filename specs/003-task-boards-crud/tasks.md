@@ -202,18 +202,18 @@
 
 ### Implementation for User Story 6
 
-- [ ] T070 [P] [US6] Create BoardMember schema in backend/src/api/schemas/board_member.py
-- [ ] T071 [P] [US6] Create board member service in backend/src/services/board_member_service.py
-- [ ] T072 [P] [US6] Implement add_member method in backend/src/services/board_member_service.py
-- [ ] T073 [P] [US6] Implement remove_member method in backend/src/services/board_member_service.py
-- [ ] T074 [P] [US6] Implement update_member_role method in backend/src/services/board_member_service.py
-- [ ] T075 [US6] Create add member endpoint POST /api/boards/{id}/members in backend/src/api/routes/board_members.py
-- [ ] T076 [US6] Create remove member endpoint DELETE /api/boards/{id}/members/{user_id} in backend/src/api/routes/board_members.py
-- [ ] T077 [US6] Create update role endpoint PUT /api/boards/{id}/members/{user_id}/role in backend/src/api/routes/board_members.py
-- [ ] T078 [US6] Add owner-only permission check for member management in backend/src/services/permission_service.py
-- [ ] T079 [US6] Add user lookup by email in backend/src/services/board_member_service.py
-- [ ] T080 [US6] Add 404 response for user not found in backend/src/api/routes/board_members.py
-- [ ] T081 [US6] Add permissions validation in backend/src/api/schemas/board_member.py
+- [X] T070 [P] [US6] Create BoardMember schema in backend/src/api/schemas/board_member.py
+- [X] T071 [P] [US6] Create board member service in backend/src/services/board_member_service.py
+- [X] T072 [P] [US6] Implement add_member method in backend/src/services/board_member_service.py
+- [X] T073 [P] [US6] Implement remove_member method in backend/src/services/board_member_service.py
+- [X] T074 [P] [US6] Implement update_member_role method in backend/src/services/board_member_service.py
+- [X] T075 [US6] Create add member endpoint POST /api/boards/{id}/members in backend/src/api/routes/board_members.py
+- [X] T076 [US6] Create remove member endpoint DELETE /api/boards/{id}/members/{user_id} in backend/src/api/routes/board_members.py
+- [X] T077 [US6] Create update role endpoint PUT /api/boards/{id}/members/{user_id}/role in backend/src/api/routes/board_members.py
+- [X] T078 [US6] Add owner-only permission check for member management in backend/src/services/permission_service.py
+- [X] T079 [US6] Add user lookup by email in backend/src/services/board_member_service.py
+- [X] T080 [US6] Add 404 response for user not found in backend/src/api/routes/board_members.py
+- [X] T081 [US6] Add permissions validation in backend/src/api/schemas/board_member.py
 
 **Checkpoint**: All user stories should now be independently functional
 
