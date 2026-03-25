@@ -91,19 +91,19 @@
 
 ### Tests for User Story 2
 
-- [ ] T026 [P] [US2] Create contract test for GET /api/boards/{board_id}/tasks in backend/tests/contract/test_tasks_crud.py
-- [ ] T027 [P] [US2] Create integration test for tasks list with pagination in backend/tests/integration/test_task_flows.py
-- [ ] T028 [P] [US2] Create test for tasks filtering by column in backend/tests/unit/test_task_service.py
+- [X] T026 [P] [US2] Create contract test for GET /api/boards/{board_id}/tasks in backend/tests/contract/test_tasks_crud.py
+- [X] T027 [P] [US2] Create integration test for tasks list with pagination in backend/tests/integration/test_task_flows.py
+- [X] T028 [P] [US2] Create test for tasks filtering by column in backend/tests/unit/test_task_service.py
 
 ### Implementation for User Story 2
 
-- [ ] T029 [P] [US2] Create TaskListResponse schema with pagination in backend/src/api/schemas/task.py
-- [ ] T030 [P] [US2] Implement list_tasks method in backend/src/services/task_service.py with pagination
-- [ ] T031 [US2] Create tasks list endpoint GET /api/boards/{board_id}/tasks in backend/src/api/routes/tasks.py
-- [ ] T032 [US2] Add query parameters handling (page, limit, column_id, assignee_id) in backend/src/api/routes/tasks.py
-- [ ] T033 [US2] Implement tasks grouping by column in backend/src/services/task_service.py
-- [ ] T034 [US2] Add position-based sorting in backend/src/services/task_service.py
-- [ ] T035 [US2] Add pagination metadata to response in backend/src/api/routes/tasks.py
+- [X] T029 [P] [US2] Create TaskListResponse schema with pagination in backend/src/api/schemas/task.py
+- [X] T030 [P] [US2] Implement list_tasks method in backend/src/services/task_service.py with pagination
+- [X] T031 [US2] Create tasks list endpoint GET /api/boards/{board_id}/tasks in backend/src/api/routes/tasks.py
+- [X] T032 [US2] Add query parameters handling (page, limit, column_id, assignee_id) in backend/src/api/routes/tasks.py
+- [X] T033 [US2] Implement tasks grouping by column in backend/src/services/task_service.py
+- [X] T034 [US2] Add position-based sorting in backend/src/services/task_service.py
+- [X] T035 [US2] Add pagination metadata to response in backend/src/api/routes/tasks.py
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -117,22 +117,22 @@
 
 ### Tests for User Story 3
 
-- [ ] T036 [P] [US3] Create contract test for PUT /api/tasks/{task_id} in backend/tests/contract/test_tasks_crud.py
-- [ ] T037 [P] [US3] Create integration test for task update flow in backend/tests/integration/test_task_flows.py
-- [ ] T038 [P] [US3] Create test for optimistic locking conflict in backend/tests/unit/test_task_service.py
-- [ ] T039 [P] [US3] Create test for assignee edit permission in backend/tests/unit/test_permission_service.py
+- [X] T036 [P] [US3] Create contract test for PUT /api/tasks/{task_id} in backend/tests/contract/test_tasks_crud.py
+- [X] T037 [P] [US3] Create integration test for task update flow in backend/tests/integration/test_task_flows.py
+- [X] T038 [P] [US3] Create test for optimistic locking conflict in backend/tests/unit/test_task_service.py
+- [X] T039 [P] [US3] Create test for assignee edit permission in backend/tests/unit/test_permission_service.py
 
 ### Implementation for User Story 3
 
-- [ ] T040 [P] [US3] Create TaskUpdate schema in backend/src/api/schemas/task.py
-- [ ] T041 [P] [US3] Implement update_task method in backend/src/services/task_service.py with version check
-- [ ] T042 [US3] Create task update endpoint PUT /api/tasks/{task_id} in backend/src/api/routes/tasks.py
-- [ ] T043 [US3] Add ETag header support in backend/src/api/routes/tasks.py
-- [ ] T044 [US3] Add If-Match header validation in backend/src/api/routes/tasks.py
-- [ ] T045 [US3] Implement optimistic locking with version increment in backend/src/services/task_service.py
-- [ ] T046 [US3] Add 412 Conflict response for version mismatch in backend/src/api/routes/tasks.py
-- [ ] T047 [US3] Add assignee permission check (assignee can edit regardless of board role) in backend/src/services/permission_service.py
-- [ ] T048 [US3] Add updated_at timestamp update in backend/src/services/task_service.py
+- [X] T040 [P] [US3] Create TaskUpdate schema in backend/src/api/schemas/task.py
+- [X] T041 [P] [US3] Implement update_task method in backend/src/services/task_service.py with version check
+- [X] T042 [US3] Create task update endpoint PUT /api/tasks/{task_id} in backend/src/api/routes/tasks.py
+- [X] T043 [US3] Add ETag header support in backend/src/api/routes/tasks.py
+- [X] T044 [US3] Add If-Match header validation in backend/src/api/routes/tasks.py
+- [X] T045 [US3] Implement optimistic locking with version increment in backend/src/services/task_service.py
+- [X] T046 [US3] Add 412 Conflict response for version mismatch in backend/src/api/routes/tasks.py
+- [X] T047 [US3] Add assignee permission check (assignee can edit regardless of board role) in backend/src/services/permission_service.py
+- [X] T048 [US3] Add updated_at timestamp update in backend/src/services/task_service.py
 
 **Checkpoint**: At this point, User Stories 1-3 should all work independently
 
@@ -146,20 +146,20 @@
 
 ### Tests for User Story 4
 
-- [ ] T049 [P] [US4] Create contract test for POST /api/tasks/{task_id}/move in backend/tests/contract/test_tasks_crud.py
-- [ ] T050 [P] [US4] Create integration test for task move flow in backend/tests/integration/test_task_flows.py
-- [ ] T051 [P] [US4] Create test for position calculation in backend/tests/unit/test_task_service.py
+- [X] T049 [P] [US4] Create contract test for POST /api/tasks/{task_id}/move in backend/tests/contract/test_tasks_crud.py
+- [X] T050 [P] [US4] Create integration test for task move flow in backend/tests/integration/test_task_flows.py
+- [X] T051 [P] [US4] Create test for position calculation in backend/tests/unit/test_task_service.py
 
 ### Implementation for User Story 4
 
-- [ ] T052 [P] [US4] Create TaskMoveRequest schema in backend/src/api/schemas/task.py
-- [ ] T053 [P] [US4] Implement move_task method in backend/src/services/task_service.py
-- [ ] T054 [US4] Create task move endpoint POST /api/tasks/{task_id}/move in backend/src/api/routes/tasks.py
-- [ ] T055 [US4] Add column_id and position parameters in backend/src/api/schemas/task.py
-- [ ] T056 [US4] Implement position calculation (float-based) in backend/src/services/task_service.py
-- [ ] T057 [US4] Add default position (end of column) logic in backend/src/services/task_service.py
-- [ ] T058 [US4] Add write permission check for move operation in backend/src/services/permission_service.py
-- [ ] T059 [US4] Add version increment for move operation in backend/src/services/task_service.py
+- [X] T052 [P] [US4] Create TaskMoveRequest schema in backend/src/api/schemas/task.py
+- [X] T053 [P] [US4] Implement move_task method in backend/src/services/task_service.py
+- [X] T054 [US4] Create task move endpoint POST /api/tasks/{task_id}/move in backend/src/api/routes/tasks.py
+- [X] T055 [US4] Add column_id and position parameters in backend/src/api/schemas/task.py
+- [X] T056 [US4] Implement position calculation (float-based) in backend/src/services/task_service.py
+- [X] T057 [US4] Add default position (end of column) logic in backend/src/services/task_service.py
+- [X] T058 [US4] Add write permission check for move operation in backend/src/services/permission_service.py
+- [X] T059 [US4] Add version increment for move operation in backend/src/services/task_service.py
 
 **Checkpoint**: At this point, User Stories 1-4 should all work independently
 
@@ -173,18 +173,18 @@
 
 ### Tests for User Story 5
 
-- [ ] T060 [P] [US5] Create contract test for DELETE /api/tasks/{task_id} in backend/tests/contract/test_tasks_crud.py
-- [ ] T061 [P] [US5] Create integration test for task delete flow in backend/tests/integration/test_task_flows.py
-- [ ] T062 [P] [US5] Create test for soft delete flag in backend/tests/unit/test_task_service.py
+- [X] T060 [P] [US5] Create contract test for DELETE /api/tasks/{task_id} in backend/tests/contract/test_tasks_crud.py
+- [X] T061 [P] [US5] Create integration test for task delete flow in backend/tests/integration/test_task_flows.py
+- [X] T062 [P] [US5] Create test for soft delete flag in backend/tests/unit/test_task_service.py
 
 ### Implementation for User Story 5
 
-- [ ] T063 [P] [US5] Implement delete_task method in backend/src/services/task_service.py with soft delete
-- [ ] T064 [US5] Create task delete endpoint DELETE /api/tasks/{task_id} in backend/src/api/routes/tasks.py
-- [ ] T065 [US5] Add 204 No Content response for successful delete in backend/src/api/routes/tasks.py
-- [ ] T066 [US5] Add delete permission check in backend/src/services/permission_service.py
-- [ ] T067 [US5] Add is_deleted flag update in backend/src/services/task_service.py
-- [ ] T068 [US5] Add filter for is_deleted in list_tasks method in backend/src/services/task_service.py
+- [X] T063 [P] [US5] Implement delete_task method in backend/src/services/task_service.py with soft delete
+- [X] T064 [US5] Create task delete endpoint DELETE /api/tasks/{task_id} in backend/src/api/routes/tasks.py
+- [X] T065 [US5] Add 204 No Content response for successful delete in backend/src/api/routes/tasks.py
+- [X] T066 [US5] Add delete permission check in backend/src/services/permission_service.py
+- [X] T067 [US5] Add is_deleted flag update in backend/src/services/task_service.py
+- [X] T068 [US5] Add filter for is_deleted in list_tasks method in backend/src/services/task_service.py
 
 **Checkpoint**: At this point, User Stories 1-5 should all work independently
 
@@ -198,15 +198,15 @@
 
 ### Tests for User Story 6
 
-- [ ] T069 [P] [US6] Create contract test for POST /api/tasks/{task_id}/unassign in backend/tests/contract/test_tasks_crud.py
-- [ ] T070 [P] [US6] Create integration test for unassign flow in backend/tests/integration/test_task_flows.py
+- [X] T069 [P] [US6] Create contract test for POST /api/tasks/{task_id}/unassign in backend/tests/contract/test_tasks_crud.py
+- [X] T070 [P] [US6] Create integration test for unassign flow in backend/tests/integration/test_task_flows.py
 
 ### Implementation for User Story 6
 
-- [ ] T071 [US6] Create unassign_task method in backend/src/services/task_service.py
-- [ ] T072 [US6] Create unassign endpoint POST /api/tasks/{task_id}/unassign in backend/src/api/routes/tasks.py
-- [ ] T073 [US6] Add assignee-only permission check in backend/src/services/permission_service.py
-- [ ] T074 [US6] Add assignee_id = NULL update in backend/src/services/task_service.py
+- [X] T071 [US6] Create unassign_task method in backend/src/services/task_service.py
+- [X] T072 [US6] Create unassign endpoint POST /api/tasks/{task_id}/unassign in backend/src/api/routes/tasks.py
+- [X] T073 [US6] Add assignee-only permission check in backend/src/services/permission_service.py
+- [X] T074 [US6] Add assignee_id = NULL update in backend/src/services/task_service.py
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -340,18 +340,20 @@ With multiple developers:
 
 | Phase | Total | Completed | Remaining | Description |
 |-------|-------|-----------|-----------|-------------|
-| Phase 1: Setup | 3 | 0 | 3 | Project structure verification |
-| Phase 2: Foundational | 9 | 0 | 9 | Models, migrations, permissions, auth |
-| Phase 3: US1 (Create) | 13 | 0 | 13 | Task creation with tests |
-| Phase 4: US2 (List) | 10 | 0 | 10 | Tasks list with pagination |
-| Phase 5: US3 (Update) | 14 | 0 | 14 | Task update with optimistic locking |
-| Phase 6: US4 (Move) | 11 | 0 | 11 | Task move between columns |
-| Phase 7: US5 (Delete) | 9 | 0 | 9 | Soft delete with tests |
-| Phase 8: US6 (Unassign) | 6 | 0 | 6 | Unassign self from task |
+| Phase 1: Setup | 3 | 3 | 0 | Project structure verification ✅ |
+| Phase 2: Foundational | 9 | 9 | 0 | Models, migrations, permissions, auth ✅ |
+| Phase 3: US1 (Create) | 13 | 13 | 0 | Task creation with tests ✅ |
+| Phase 4: US2 (List) | 10 | 10 | 0 | Tasks list with pagination ✅ |
+| Phase 5: US3 (Update) | 14 | 14 | 0 | Task update with optimistic locking ✅ |
+| Phase 6: US4 (Move) | 11 | 11 | 0 | Task move between columns ✅ |
+| Phase 7: US5 (Delete) | 9 | 9 | 0 | Soft delete with tests ✅ |
+| Phase 8: US6 (Unassign) | 6 | 6 | 0 | Unassign self from task ✅ |
 | Phase 9: Polish | 11 | 0 | 11 | Cross-cutting concerns |
-| **Total** | **86** | **0** | **86** | |
+| **Total** | **86** | **75** | **11** | |
 
-**Completion Status**: 0% (0/86 tasks completed)
+**Completion Status**: 87% (75/86 tasks completed)
 
-**MVP Scope**: Phases 1-3 (25 tasks) - Task creation only
-**Full Feature**: All phases (86 tasks) - Complete tasks CRUD with unassign
+**MVP Scope**: Phases 1-3 (25 tasks) - Task creation only ✅
+**Full Feature**: All phases (86 tasks) - Complete tasks CRUD with unassign (87% complete)
+
+**Remaining**: Phase 9 Polish tasks (T075-T085)
