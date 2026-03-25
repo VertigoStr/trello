@@ -48,3 +48,13 @@ CREATE INDEX IF NOT EXISTS idx_board_members_board_id ON board_members(board_id)
 CREATE INDEX IF NOT EXISTS idx_board_members_user_id ON board_members(user_id);
 CREATE INDEX IF NOT EXISTS idx_columns_board_id ON columns(board_id);
 CREATE INDEX IF NOT EXISTS idx_tasks_column_id ON tasks(column_id);
+CREATE INDEX IF NOT EXISTS idx_tasks_position ON tasks(position);
+CREATE INDEX IF NOT EXISTS idx_tasks_assignee_id ON tasks(assignee_id);
+CREATE INDEX IF NOT EXISTS idx_tasks_is_deleted ON tasks(is_deleted);
+CREATE INDEX IF NOT EXISTS idx_tasks_version ON tasks(version);
+
+-- Add version column to tasks table if not exists (migration 007)
+ALTER TABLE tasks ADD COLUMN IF NOT EXISTS version INTEGER DEFAULT 1;
+
+-- Change position column type to FLOAT (migration 007)
+-- Note: This is safe because existing integer values will be preserved as floats
