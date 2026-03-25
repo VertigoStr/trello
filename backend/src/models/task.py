@@ -68,7 +68,6 @@ class Task(BaseModel):
     )
     assignee: Mapped["User"] = relationship(
         "User",
-        back_populates="tasks",
         foreign_keys=[assignee_id],
     )
     

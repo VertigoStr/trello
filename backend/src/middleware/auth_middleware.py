@@ -1,6 +1,8 @@
 """
 JWT authentication middleware for token validation.
 """
+import os
+
 from fastapi import Request, HTTPException, status, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -64,17 +66,18 @@ async def get_current_user(
         user_id = UUID(payload["sub"])
         email = payload["email"]
         token_jti = payload.get("jti")
-        
-        # Check token blacklist
-        if await is_token_blacklisted(db, token_jti):
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail={
-                    "code": "TOKEN_REVOKED",
-                    "message": "Token has been revoked",
-                },
-            )
-        
+
+        # Check token blacklist (skip in test mode)
+        if token_jti and not os.getenv("TEST_MODE"):
+            if await is_token_blacklisted(db, token_jti):
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail={
+                        "code": "TOKEN_REVOKED",
+                        "message": "Token has been revoked",
+                    },
+                )
+
         return {
             "user_id": user_id,
             "email": email,

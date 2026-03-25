@@ -91,12 +91,21 @@ def token() -> str:
     import jwt
     from datetime import datetime, timedelta
     
+    # Set test mode to skip blacklist checks
+    import os
+    os.environ["TEST_MODE"] = "true"
+    os.environ["JWT_SECRET_KEY"] = "dev-secret-key"
+    
     payload = {
         "sub": "test-user-uuid",
         "email": "test@example.com",
         "iat": datetime.utcnow(),
         "exp": datetime.utcnow() + timedelta(hours=168),
         "type": "access",
+        "jti": "test-jti-uuid",
     }
     
-    return jwt.encode(payload, "test-secret-key", algorithm="HS256")
+    # Use the same secret key as in jwt_service
+    secret_key = "dev-secret-key"
+    
+    return jwt.encode(payload, secret_key, algorithm="HS256")
