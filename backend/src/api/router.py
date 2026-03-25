@@ -6,6 +6,7 @@ from src.api.routes.auth import router as auth_router
 from src.api.routes.health import router as health_router
 from src.api.routes.boards import router as boards_router
 from src.api.routes.board_members import router as board_members_router
+from src.api.routes.tasks import router as tasks_router
 
 # Create main router
 router = APIRouter()
@@ -21,6 +22,9 @@ router.include_router(boards_router, prefix="/api")
 
 # Include board members routes with /api prefix
 router.include_router(board_members_router, prefix="/api")
+
+# Include tasks routes with /api prefix
+router.include_router(tasks_router, prefix="/api")
 
 
 @router.get("/")

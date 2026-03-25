@@ -26,9 +26,9 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [P] Verify project structure exists: backend/src/
-- [ ] T002 [P] Verify dependencies in backend/requirements.txt (FastAPI, SQLAlchemy, asyncpg)
-- [ ] T003 [P] Verify pytest configuration in backend/pytest.ini
+- [X] T001 [P] Verify project structure exists: backend/src/
+- [X] T002 [P] Verify dependencies in backend/requirements.txt (FastAPI, SQLAlchemy, asyncpg)
+- [X] T003 [P] Verify pytest configuration in backend/pytest.ini
 
 ---
 
@@ -38,15 +38,15 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 [P] Verify Task model exists in backend/src/models/task.py with all fields from data-model.md
-- [ ] T005 [P] Verify Column model exists in backend/src/models/column.py (from 003-task-boards-crud)
-- [ ] T006 [P] Verify Board model exists in backend/src/models/board.py (from 003-task-boards-crud)
-- [ ] T007 [P] Verify BoardMember model exists in backend/src/models/board_member.py (from 003-task-boards-crud)
-- [ ] T008 [P] Verify models __init__.py exports all models in backend/src/models/__init__.py
-- [ ] T009 [P] Add version field to Task model for optimistic locking in backend/src/models/task.py
-- [ ] T010 [P] Create database migration for adding version column to tasks table in backend/src/db/migrations/007_add_task_version.py
-- [ ] T011 [P] Verify PermissionService exists in backend/src/services/permission_service.py (from 003-task-boards-crud)
-- [ ] T012 [P] Verify JWT authentication middleware exists in backend/src/middleware/auth_middleware.py (from 003-task-boards-crud)
+- [X] T004 [P] Verify Task model exists in backend/src/models/task.py with all fields from data-model.md
+- [X] T005 [P] Verify Column model exists in backend/src/models/column.py (from 003-task-boards-crud)
+- [X] T006 [P] Verify Board model exists in backend/src/models/board.py (from 003-task-boards-crud)
+- [X] T007 [P] Verify BoardMember model exists in backend/src/models/board_member.py (from 003-task-boards-crud)
+- [X] T008 [P] Verify models __init__.py exports all models in backend/src/models/__init__.py
+- [X] T009 [P] Add version field to Task model for optimistic locking in backend/src/models/task.py
+- [X] T010 [P] Create database migration for adding version column to tasks table in backend/src/db/migrations/007_add_task_version.py
+- [X] T011 [P] Verify PermissionService exists in backend/src/services/permission_service.py (from 003-task-boards-crud)
+- [X] T012 [P] Verify JWT authentication middleware exists in backend/src/middleware/auth_middleware.py (from 003-task-boards-crud)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -68,16 +68,16 @@
 
 ### Implementation for User Story 1
 
-- [ ] T016 [P] [US1] Create TaskCreate schema in backend/src/api/schemas/task.py with Pydantic validation
-- [ ] T017 [P] [US1] Create TaskResponse schema in backend/src/api/schemas/task.py
-- [ ] T018 [P] [US1] Implement create_task method in backend/src/services/task_service.py
-- [ ] T019 [US1] Create task creation endpoint POST /api/boards/{board_id}/columns/{column_id}/tasks in backend/src/api/routes/tasks.py
-- [ ] T020 [US1] Add title validation (1-255 chars) in backend/src/api/schemas/task.py
-- [ ] T021 [US1] Add assignee selection from board members in backend/src/services/task_service.py
-- [ ] T022 [US1] Add default assignee (creator) logic in backend/src/services/task_service.py
-- [ ] T023 [US1] Add position management (append to end of column) in backend/src/services/task_service.py
-- [ ] T024 [US1] Add error handling for validation errors in backend/src/api/routes/tasks.py with 400 response
-- [ ] T025 [US1] Add structured logging for task creation in backend/src/services/task_service.py
+- [X] T016 [P] [US1] Create TaskCreate schema in backend/src/api/schemas/task.py with Pydantic validation
+- [X] T017 [P] [US1] Create TaskResponse schema in backend/src/api/schemas/task.py
+- [X] T018 [P] [US1] Implement create_task method in backend/src/services/task_service.py
+- [X] T019 [US1] Create task creation endpoint POST /api/boards/{board_id}/columns/{column_id}/tasks in backend/src/api/routes/tasks.py
+- [X] T020 [US1] Add title validation (1-255 chars) in backend/src/api/schemas/task.py
+- [X] T021 [US1] Add assignee selection from board members in backend/src/services/task_service.py
+- [X] T022 [US1] Add default assignee (creator) logic in backend/src/services/task_service.py
+- [X] T023 [US1] Add position management (append to end of column) in backend/src/services/task_service.py
+- [X] T024 [US1] Add error handling for validation errors in backend/src/api/routes/tasks.py with 400 response
+- [X] T025 [US1] Add structured logging for task creation in backend/src/services/task_service.py
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
