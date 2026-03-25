@@ -223,12 +223,12 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T082 [P] Create health check endpoint for boards API GET /health/boards in backend/src/api/routes/health.py
-- [ ] T083 [P] Add CORS middleware for boards endpoints in backend/src/middleware/cors.py
-- [ ] T084 [P] Add request ID middleware for tracing in backend/src/middleware/request_id.py
-- [ ] T085 [P] Create API documentation in backend/README.md with usage examples
-- [ ] T086 [P] Add rate limiting for boards endpoints in backend/src/middleware/rate_limiter.py
-- [ ] T087 [P] Create database cleanup script for soft-deleted tasks in backend/src/scripts/cleanup_tasks.py
+- [X] T082 [P] Create health check endpoint for boards API GET /health/boards in backend/src/api/routes/health.py
+- [X] T083 [P] Add CORS middleware for boards endpoints in backend/src/middleware/cors.py
+- [X] T084 [P] Add request ID middleware for tracing in backend/src/middleware/request_id.py
+- [X] T085 [P] Create API documentation in backend/README.md with usage examples
+- [X] T086 [P] Add rate limiting for boards endpoints in backend/src/middleware/rate_limiter.py
+- [X] T087 [P] Create database cleanup script for soft-deleted tasks in backend/src/scripts/cleanup_tasks.py
 - [ ] T088 [P] Add performance monitoring for board operations in backend/src/utils/monitoring.py
 - [ ] T089 Run full integration test suite
 - [ ] T090 Run quickstart.md validation (follow all steps end-to-end)
