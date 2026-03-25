@@ -62,9 +62,9 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T013 [P] [US1] Create contract test for POST /api/boards/{board_id}/columns/{column_id}/tasks in backend/tests/contract/test_tasks_crud.py
-- [ ] T014 [P] [US1] Create integration test for task creation flow in backend/tests/integration/test_task_flows.py
-- [ ] T015 [P] [US1] Create validation test for task title in backend/tests/unit/test_task_service.py
+- [X] T013 [P] [US1] Create contract test for POST /api/boards/{board_id}/columns/{column_id}/tasks in backend/tests/contract/test_tasks_crud.py
+- [X] T014 [P] [US1] Create integration test for task creation flow in backend/tests/integration/test_task_flows.py
+- [X] T015 [P] [US1] Create validation test for task title in backend/tests/unit/test_task_service.py
 
 ### Implementation for User Story 1
 
