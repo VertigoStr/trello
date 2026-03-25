@@ -3,7 +3,6 @@ Task service for CRUD operations on tasks.
 """
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
-from sqlalchemy.exc import StaleDataError
 from typing import Optional, Tuple, List
 from uuid import UUID
 from datetime import datetime
