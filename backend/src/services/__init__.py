@@ -1,15 +1,10 @@
 """
-Authentication and authorization services.
+Services for task boards CRUD API.
 """
-from src.services.auth_service import AuthService
-from src.services.password_service import hash_password, verify_password, validate_password
-from src.services.jwt_service import jwt_service, JWTService
+from src.services.board_service import BoardService
+from src.services.permission_service import PermissionService
 
 __all__ = [
-    "AuthService",
-    "hash_password",
-    "verify_password",
-    "validate_password",
-    "jwt_service",
-    "JWTService",
+    "BoardService",
+    "PermissionService",
 ]

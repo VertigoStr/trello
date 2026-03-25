@@ -1,7 +1,15 @@
 """
-Database models.
+Database models for task boards CRUD API.
 """
-from src.models.user import User
-from src.models.token import AccessToken
+from src.models.board import Board, BoardStatus
+from src.models.board_member import BoardMember
+from src.models.column import Column
+from src.models.task import Task
 
-__all__ = ["User", "AccessToken"]
+__all__ = [
+    "Board",
+    "BoardStatus",
+    "BoardMember",
+    "Column",
+    "Task",
+]
