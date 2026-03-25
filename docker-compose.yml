@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: trello-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: trello
+      POSTGRES_USER: trello
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-trello_dev}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/src/db/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trello -d trello"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - trello-network
+
+  # Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: trello-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+asyncpg://trello:${POSTGRES_PASSWORD:-trello_dev}@postgres:5432/trello
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-your-secret-key-change-in-production}
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRATION_HOURS: 168
+      BCRYPT_COST_FACTOR: 12
+      TEST_MODE: ${TEST_MODE:-false}
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    volumes:
+      - ./backend/src:/app/src:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/boards')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - trello-network
+    command: >
+      sh -c "uvicorn src.api.main:app --host 0.0.0.0 --port 8000"
+
+networks:
+  trello-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local

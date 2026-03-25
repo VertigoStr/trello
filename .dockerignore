@@ -1,20 +1,37 @@
-# Docker ignore file
+# Git
+.git
+.gitignore
 
-# Dependencies
-node_modules/
+# Docker
+Dockerfile
+docker-compose*.yml
+.docker/
+
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
 .Python
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Virtual environments
 venv/
 env/
 .venv/
-.env
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
 # IDE
 .idea/
@@ -22,33 +39,30 @@ env/
 *.swp
 *.swo
 *~
-
-# OS
 .DS_Store
 Thumbs.db
 
-# Git
-.git/
-.gitignore
+# Environment
+.env
+.env.local
+.env.*.local
 
-# Build outputs
-dist/
-build/
-*.egg-info/
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+*.pyc
+.nyc_output/
 
 # Logs
 *.log
 logs/
 
-# Test coverage
-.coverage
-htmlcov/
-.pytest_cache/
+# Specify
+.specify/
+specs/
+QWEN.md
 
-# Documentation
-docs/_build/
-
-# Docker
-.docker/
-docker-compose*.yml
-Dockerfile*
+# Scripts
+scripts/
