@@ -64,16 +64,22 @@ export async function register(
   password: string,
   password_confirm: string
 ): Promise<{ user: User; accessToken: string }> {
-  const response = await fetchWithAuth<RegisterResponse>(
-    `${API_BASE}/api/auth/register`,
-    {
-      method: 'POST',
-      body: JSON.stringify({ name, email, password, password_confirm }),
-    }
-  )
+  const response = await fetch(`${API_BASE}/api/auth/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name, email, password, password_confirm }),
+  })
 
-  if (response.status === 'success') {
-    const { user, accessToken } = response.data
+  const data = await response.json()
+
+  if (data.status === 'error') {
+    throw new Error(data.error.message)
+  }
+
+  if (data.status === 'success') {
+    const { user, accessToken } = data.data
     localStorage.setItem('auth_token', accessToken)
     return { user, accessToken }
   }
@@ -88,16 +94,22 @@ export async function login(
   email: string,
   password: string
 ): Promise<{ user: User; accessToken: string }> {
-  const response = await fetchWithAuth<LoginResponse>(
-    `${API_BASE}/api/auth/login`,
-    {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-    }
-  )
+  const response = await fetch(`${API_BASE}/api/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  })
 
-  if (response.status === 'success') {
-    const { user, accessToken } = response.data
+  const data = await response.json()
+
+  if (data.status === 'error') {
+    throw new Error(data.error.message)
+  }
+
+  if (data.status === 'success') {
+    const { user, accessToken } = data.data
     localStorage.setItem('auth_token', accessToken)
     return { user, accessToken }
   }
