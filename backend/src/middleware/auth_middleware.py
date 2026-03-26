@@ -65,6 +65,7 @@ async def get_current_user(
         # Extract user info
         user_id = UUID(payload["sub"])
         email = payload["email"]
+        name = payload.get("name", "")  # Name may not be in older tokens
         token_jti = payload.get("jti")
 
         # Check token blacklist (skip in test mode)
@@ -81,6 +82,7 @@ async def get_current_user(
         return {
             "user_id": user_id,
             "email": email,
+            "name": name,
             "jti": token_jti,
             "token": token,
         }

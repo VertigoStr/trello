@@ -25,6 +25,7 @@ class JWTService:
         self,
         user_id: UUID,
         email: str,
+        name: str,
         additional_claims: Optional[Dict[str, Any]] = None,
     ) -> str:
         """
@@ -33,6 +34,7 @@ class JWTService:
         Args:
             user_id: User's unique identifier
             email: User's email address
+            name: User's display name
             additional_claims: Optional additional JWT claims
 
         Returns:
@@ -40,13 +42,14 @@ class JWTService:
         """
         now = datetime.utcnow()
         expire = now + timedelta(hours=self.expiration_hours)
-        
+
         # Generate unique token ID (JTI) for blacklist tracking
         token_jti = str(uuid4())
 
         payload = {
             "sub": str(user_id),  # Subject (user ID)
             "email": email,
+            "name": name,
             "jti": token_jti,  # JWT ID for blacklist tracking
             "iat": now,  # Issued at
             "exp": expire,  # Expiration time

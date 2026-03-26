@@ -68,13 +68,14 @@ class AuthService:
         await self.db.refresh(user)
         
         logger.info(f"User registered: {user.email} (id={user.id})")
-        
+
         # Generate access token
         access_token = jwt_service.create_access_token(
             user_id=user.id,
             email=user.email,
+            name=user.name,
         )
-        
+
         return user, access_token
     
     async def login(
@@ -121,15 +122,16 @@ class AuthService:
         # Reset failed attempts on successful login
         user.reset_failed_attempts()
         await self.db.flush()
-        
+
         logger.info(f"User logged in: {user.email} (id={user.id})")
-        
+
         # Generate access token
         access_token = jwt_service.create_access_token(
             user_id=user.id,
             email=user.email,
+            name=user.name,
         )
-        
+
         return user, access_token
     
     async def logout(self, user_id: UUID, token_jti: Optional[str] = None) -> None:
