@@ -103,16 +103,12 @@ async def list_boards(
     
     Returns boards where user is owner or member.
     """
-    from src.models.board import BoardStatus
-    
     board_service = BoardService(db)
-    
-    # Parse status filter
-    status_enum = None
+
+    # Parse status filter (as string, not enum)
+    status_value = None
     if status_filter:
-        try:
-            status_enum = BoardStatus(status_filter)
-        except ValueError:
+        if status_filter not in ['active', 'archived']:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail={
@@ -120,12 +116,13 @@ async def list_boards(
                     "message": "Status must be 'active' or 'archived'",
                 },
             )
-    
+        status_value = status_filter
+
     boards, total = await board_service.get_boards_for_user(
         user_id=current_user["user_id"],
         page=page,
         limit=limit,
-        status=status_enum,
+        status=status_value,
     )
     
     return {

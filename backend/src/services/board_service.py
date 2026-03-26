@@ -11,8 +11,6 @@ import logging
 from src.models.board import Board
 from src.models.board_member import BoardMember
 
-BoardStatus = str
-
 logger = logging.getLogger(__name__)
 
 
@@ -101,7 +99,7 @@ class BoardService:
         user_id: UUID,
         page: int = 1,
         limit: int = 20,
-        status: Optional[BoardStatus] = None,
+        status: Optional[str] = None,
     ) -> Tuple[List[Board], int]:
         """
         Get all boards for a user with pagination.
