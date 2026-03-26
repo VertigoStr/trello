@@ -65,9 +65,9 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T014 [P] [US1] Component test for RegisterPage form validation in frontend/tests/pages/RegisterPage.test.tsx
-- [ ] T015 [P] [US1] Integration test for registration flow in frontend/tests/integration/RegisterFlow.test.tsx
-- [ ] T016 [P] [US1] Test for email validation in frontend/tests/utils/validation.test.ts
+- [X] T014 [P] [US1] Component test for RegisterPage form validation in frontend/tests/pages/RegisterPage.test.tsx
+- [X] T015 [P] [US1] Integration test for registration flow in frontend/tests/integration/RegisterFlow.test.tsx
+- [X] T016 [P] [US1] Test for email validation in frontend/tests/utils/validation.test.ts
 
 ### Implementation for User Story 1
 
@@ -341,18 +341,18 @@ With multiple developers:
 |-------|-------|-----------|-----------|-------------|
 | Phase 1: Setup | 5 | 5 | 0 | Project structure, React + TypeScript + Vite ✅ |
 | Phase 2: Foundational | 8 | 8 | 0 | Types, validation, authService, hooks, components ✅ |
-| Phase 3: US1 (Register) | 10 | 7 | 3 | Registration page (tests pending) |
+| Phase 3: US1 (Register) | 10 | 10 | 0 | Registration page with tests ✅ |
 | Phase 4: US2 (Login) | 11 | 8 | 3 | Login page (tests pending) |
 | Phase 5: US3 (Logout) | 7 | 5 | 2 | Logout functionality (tests pending) |
 | Phase 6: US4 (Profile) | 8 | 6 | 2 | Profile page (tests pending) |
 | Phase 7: US5 (Dashboard) | 8 | 6 | 2 | Dashboard page (tests pending) |
 | Phase 8: US6 (Reset) | 12 | 9 | 3 | Password reset pages (tests pending) |
 | Phase 9: Polish | 12 | 0 | 12 | Responsive, E2E, CI/CD, Docker |
-| **Total** | **81** | **54** | **27** | |
+| **Total** | **81** | **57** | **24** | |
 
-**Completion Status**: 67% (54/81 tasks completed)
+**Completion Status**: 70% (57/81 tasks completed)
 
 **MVP Scope**: Phases 1-4 (34 задачи) - Registration + Login ✅ COMPLETE
-**Full Feature**: All phases (81 задача) - Complete authentication UI (67% complete)
+**Full Feature**: All phases (81 задача) - Complete authentication UI (70% complete)
 
-**Remaining**: Test tasks (27) — need to write component, integration, and E2E tests
+**Remaining**: Test tasks (24) — Login, Logout, Profile, Dashboard, Reset tests + Polish
