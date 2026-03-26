@@ -118,13 +118,13 @@
 
 ### Implementation for User Story 3
 
-- [ ] T032 [P] [US3] Create DeleteBoardModal component: frontend/src/components/boards/DeleteBoardModal.tsx
-- [ ] T033 [US3] Add board name input for confirmation in frontend/src/components/boards/DeleteBoardModal.tsx
-- [ ] T034 [US3] Disable delete button until name matches in frontend/src/components/boards/DeleteBoardModal.tsx
-- [ ] T035 [US3] Integrate with boardService.delete() in frontend/src/services/boardService.ts
-- [ ] T036 [US3] Add owner-only check (only show for board owner) in frontend/src/components/boards/DeleteBoardModal.tsx
-- [ ] T037 [US3] Add redirect to dashboard after successful delete in frontend/src/components/boards/DeleteBoardModal.tsx
-- [ ] T038 [US3] Add error handling for access denied in frontend/src/components/boards/DeleteBoardModal.tsx
+- [X] T032 [P] [US3] Create DeleteBoardModal component: frontend/src/components/boards/DeleteBoardModal.tsx
+- [X] T033 [US3] Add board name input for confirmation in frontend/src/components/boards/DeleteBoardModal.tsx
+- [X] T034 [US3] Disable delete button until name matches in frontend/src/components/boards/DeleteBoardModal.tsx
+- [X] T035 [US3] Integrate with boardService.delete() in frontend/src/services/boardService.ts
+- [X] T036 [US3] Add owner-only check (only show for board owner) in frontend/src/components/boards/DeleteBoardModal.tsx
+- [X] T037 [US3] Add redirect to dashboard after successful delete in frontend/src/components/boards/DeleteBoardModal.tsx
+- [X] T038 [US3] Add error handling for access denied in frontend/src/components/boards/DeleteBoardModal.tsx
 
 **Checkpoint**: At this point, User Stories 1-3 should all work independently
 
@@ -143,12 +143,12 @@
 
 ### Implementation for User Story 4
 
-- [ ] T041 [P] [US4] Create EditBoardModal component: frontend/src/components/boards/EditBoardModal.tsx
-- [ ] T042 [US4] Pre-fill form with current board data in frontend/src/components/boards/EditBoardModal.tsx
-- [ ] T043 [US4] Implement validation (same as create) in frontend/src/components/boards/EditBoardModal.tsx
-- [ ] T044 [US4] Integrate with boardService.update() in frontend/src/services/boardService.ts
-- [ ] T045 [US4] Add owner-only check in frontend/src/components/boards/EditBoardModal.tsx
-- [ ] T046 [US4] Add error handling for access denied in frontend/src/components/boards/EditBoardModal.tsx
+- [X] T041 [P] [US4] Create EditBoardModal component: frontend/src/components/boards/EditBoardModal.tsx
+- [X] T042 [US4] Pre-fill form with current board data in frontend/src/components/boards/EditBoardModal.tsx
+- [X] T043 [US4] Implement validation (same as create) in frontend/src/components/boards/EditBoardModal.tsx
+- [X] T044 [US4] Integrate with boardService.update() in frontend/src/services/boardService.ts
+- [X] T045 [US4] Add owner-only check in frontend/src/components/boards/EditBoardModal.tsx
+- [X] T046 [US4] Add error handling for access denied in frontend/src/components/boards/EditBoardModal.tsx
 
 **Checkpoint**: At this point, User Stories 1-4 should all work independently
 
@@ -308,15 +308,15 @@ With multiple developers:
 | Phase 2: Foundational | 5 | 5 | 0 | Types, service, hook, validation ✅ |
 | Phase 3: US1 (Create) | 10 | 7 | 3 | Create board modal (tests pending) |
 | Phase 4: US2 (List) | 10 | 7 | 3 | Board list (tests pending) |
-| Phase 5: US3 (Delete) | 10 | 0 | 10 | Delete modal with confirmation |
-| Phase 6: US4 (Edit) | 9 | 0 | 9 | Edit modal with tests |
+| Phase 5: US3 (Delete) | 10 | 7 | 3 | Delete modal (tests pending) |
+| Phase 6: US4 (Edit) | 9 | 6 | 3 | Edit modal (tests pending) |
 | Phase 7: US5 (Detail) | 10 | 7 | 3 | Board detail page (tests pending) |
 | Phase 8: Polish | 10 | 0 | 10 | Responsive, E2E, docs |
-| **Total** | **67** | **29** | **38** | |
+| **Total** | **67** | **42** | **25** | |
 
-**Completion Status**: 43% (29/67 tasks completed)
+**Completion Status**: 63% (42/67 tasks completed)
 
 **MVP Scope**: Phases 1-4 (28 tasks) - Create + List boards ✅ COMPLETE
-**Full Feature**: All phases (67 tasks) - Complete boards CRUD UI (43% complete)
+**Full Feature**: All phases (67 tasks) - Complete boards CRUD UI (63% complete)
 
-**Remaining**: Test tasks + US3 (Delete) + US4 (Edit) + Polish
+**Remaining**: Test tasks (18) + Polish (10) = 28 tasks

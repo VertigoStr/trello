@@ -3,9 +3,11 @@
  */
 
 import React, { useEffect, useState } from 'react'
-import { Container, Spinner, Alert, Button, Card } from 'react-bootstrap'
+import { Container, Spinner, Alert, Button, Card, Dropdown, Modal } from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
 import { boardService } from '@/services/boardService'
+import { EditBoardModal } from '@/components/boards/EditBoardModal'
+import { DeleteBoardModal } from '@/components/boards/DeleteBoardModal'
 import type { Board } from '@/types/board'
 
 export function BoardDetailPage() {
@@ -14,6 +16,9 @@ export function BoardDetailPage() {
   const [board, setBoard] = useState<Board | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
 
   /**
    * Fetch board details.
@@ -42,6 +47,22 @@ export function BoardDetailPage() {
 
     fetchBoard()
   }, [id])
+
+  /**
+   * Handle edit success.
+   */
+  const handleEditSuccess = (updatedBoard: Board) => {
+    setBoard(updatedBoard)
+    setShowEditModal(false)
+  }
+
+  /**
+   * Handle delete success.
+   */
+  const handleDeleteSuccess = () => {
+    setBoard(null)
+    setShowDeleteModal(false)
+  }
 
   /**
    * Loading state.
@@ -77,12 +98,41 @@ export function BoardDetailPage() {
       {/* Board header */}
       <Card className="mb-4">
         <Card.Body>
-          <Card.Title>{board.title}</Card.Title>
-          {board.description && (
-            <Card.Text className="text-muted">
-              {board.description}
-            </Card.Text>
-          )}
+          <div className="d-flex justify-content-between align-items-start">
+            <div>
+              <Card.Title>{board.title}</Card.Title>
+              {board.description && (
+                <Card.Text className="text-muted">
+                  {board.description}
+                </Card.Text>
+              )}
+            </div>
+
+            {/* Board menu */}
+            <Dropdown show={showMenu} onToggle={(show) => setShowMenu(show)}>
+              <Dropdown.Toggle variant="outline-secondary" id="board-menu">
+                ⋮
+              </Dropdown.Toggle>
+              <Dropdown.Menu align="end">
+                <Dropdown.Item onClick={() => {
+                  setShowEditModal(true)
+                  setShowMenu(false)
+                }}>
+                  Редактировать
+                </Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  className="text-danger"
+                  onClick={() => {
+                    setShowDeleteModal(true)
+                    setShowMenu(false)
+                  }}
+                >
+                  Удалить доску
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
         </Card.Body>
       </Card>
 
@@ -104,6 +154,22 @@ export function BoardDetailPage() {
       >
         ← Назад к списку досок
       </Button>
+
+      {/* Edit board modal */}
+      <EditBoardModal
+        show={showEditModal}
+        onHide={() => setShowEditModal(false)}
+        board={board}
+        onSuccess={handleEditSuccess}
+      />
+
+      {/* Delete board modal */}
+      <DeleteBoardModal
+        show={showDeleteModal}
+        onHide={() => setShowDeleteModal(false)}
+        board={board}
+        onSuccess={handleDeleteSuccess}
+      />
     </Container>
   )
 }
