@@ -2,7 +2,7 @@
  * Authentication hook for managing auth state.
  */
 
-import { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, createContext, useContext } from 'react'
 import { authService } from '@/services/authService'
 import type { User } from '@/types/auth'
 
@@ -20,9 +20,14 @@ interface UseAuthReturn {
 }
 
 /**
- * Custom hook for managing authentication state.
+ * Auth context for providing auth state throughout the app.
  */
-export function useAuth(): UseAuthReturn {
+const AuthContext = createContext<UseAuthReturn | null>(null)
+
+/**
+ * Auth provider component.
+ */
+export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -75,7 +80,7 @@ export function useAuth(): UseAuthReturn {
     fetchUser()
   }, [fetchUser])
 
-  return {
+  const value = {
     user,
     isAuthenticated: !!user,
     isLoading,
@@ -84,4 +89,27 @@ export function useAuth(): UseAuthReturn {
     logout,
     refetch: fetchUser,
   }
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}
+
+/**
+ * Custom hook for managing authentication state.
+ */
+export function useAuth(): UseAuthReturn {
+  const context = useContext(AuthContext)
+  
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider')
+  }
+  
+  return context
+}
+
+/**
+ * Hook to get current user.
+ */
+export function useCurrentUser(): User | null {
+  const { user } = useAuth()
+  return user
 }
