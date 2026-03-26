@@ -173,3 +173,5 @@ export function BoardDetailPage() {
     </Container>
   )
 }
+
+export default BoardDetailPage
