@@ -13,6 +13,7 @@ import { ROUTES } from '@/types/auth'
 const LoginPage = React.lazy(() => import('@/pages/LoginPage'))
 const RegisterPage = React.lazy(() => import('@/pages/RegisterPage'))
 const DashboardPage = React.lazy(() => import('@/pages/DashboardPage'))
+const BoardDetailPage = React.lazy(() => import('@/pages/BoardDetailPage'))
 const ProfilePage = React.lazy(() => import('@/pages/ProfilePage'))
 const ForgotPasswordPage = React.lazy(() => import('@/pages/ForgotPasswordPage'))
 const ResetPasswordPage = React.lazy(() => import('@/pages/ResetPasswordPage'))
@@ -55,6 +56,14 @@ export function App() {
                   element={
                     <ProtectedRoute>
                       <DashboardPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/board/:id"
+                  element={
+                    <ProtectedRoute>
+                      <BoardDetailPage />
                     </ProtectedRoute>
                   }
                 />

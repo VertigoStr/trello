@@ -28,9 +28,9 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [P] Verify frontend project structure exists: frontend/src/{components,pages,services,hooks,types}
-- [ ] T002 [P] Verify Bootstrap 5 installed: frontend/package.json (from 005-frontend-auth)
-- [ ] T003 [P] Verify Vitest configured: frontend/vite.config.ts (from 005-frontend-auth)
+- [X] T001 [P] Verify frontend project structure exists: frontend/src/{components,pages,services,hooks,types}
+- [X] T002 [P] Verify Bootstrap 5 installed: frontend/package.json (from 005-frontend-auth)
+- [X] T003 [P] Verify Vitest configured: frontend/vite.config.ts (from 005-frontend-auth)
 
 ---
 
@@ -40,11 +40,11 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 [P] Create board types: frontend/src/types/board.ts (Board, BoardMember, CreateBoardDTO, UpdateBoardDTO)
-- [ ] T005 [P] Create boardService: frontend/src/services/boardService.ts (API integration with 003-task-boards-crud)
-- [ ] T006 [P] Create useBoards hook: frontend/src/hooks/useBoards.ts (state management for boards)
-- [ ] T007 [P] Create validation utilities: frontend/src/utils/validation.ts (validateCreateBoard, validateUpdateBoard)
-- [ ] T008 [P] Update index.css: frontend/src/styles/index.css (verify Bootstrap import from 005-frontend-auth)
+- [X] T004 [P] Create board types: frontend/src/types/board.ts (Board, BoardMember, CreateBoardDTO, UpdateBoardDTO)
+- [X] T005 [P] Create boardService: frontend/src/services/boardService.ts (API integration with 003-task-boards-crud)
+- [X] T006 [P] Create useBoards hook: frontend/src/hooks/useBoards.ts (state management for boards)
+- [X] T007 [P] Create validation utilities: frontend/src/utils/validation.ts (validateCreateBoard, validateUpdateBoard)
+- [X] T008 [P] Update index.css: frontend/src/styles/index.css (verify Bootstrap import from 005-frontend-auth)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -66,13 +66,13 @@
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create CreateBoardModal component: frontend/src/components/boards/CreateBoardModal.tsx
-- [ ] T013 [P] [US1] Add form state management with useState in frontend/src/components/boards/CreateBoardModal.tsx
-- [ ] T014 [US1] Implement client-side validation (title 1-255 chars, description 0-10000 chars) in frontend/src/components/boards/CreateBoardModal.tsx
-- [ ] T015 [US1] Integrate with boardService.create() in frontend/src/services/boardService.ts
-- [ ] T016 [US1] Add error handling for API errors (validation, auth) in frontend/src/components/boards/CreateBoardModal.tsx
-- [ ] T017 [US1] Add redirect to board detail after successful creation in frontend/src/components/boards/CreateBoardModal.tsx
-- [ ] T018 [US1] Add loading state during creation in frontend/src/components/boards/CreateBoardModal.tsx
+- [X] T012 [P] [US1] Create CreateBoardModal component: frontend/src/components/boards/CreateBoardModal.tsx
+- [X] T013 [P] [US1] Add form state management with useState in frontend/src/components/boards/CreateBoardModal.tsx
+- [X] T014 [US1] Implement client-side validation (title 1-255 chars, description 0-10000 chars) in frontend/src/components/boards/CreateBoardModal.tsx
+- [X] T015 [US1] Integrate with boardService.create() in frontend/src/services/boardService.ts
+- [X] T016 [US1] Add error handling for API errors (validation, auth) in frontend/src/components/boards/CreateBoardModal.tsx
+- [X] T017 [US1] Add redirect to board detail after successful creation in frontend/src/components/boards/CreateBoardModal.tsx
+- [X] T018 [US1] Add loading state during creation in frontend/src/components/boards/CreateBoardModal.tsx
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -92,13 +92,13 @@
 
 ### Implementation for User Story 2
 
-- [ ] T022 [P] [US2] Create BoardCard component: frontend/src/components/boards/BoardCard.tsx
-- [ ] T023 [P] [US2] Create BoardList component: frontend/src/components/boards/BoardList.tsx
-- [ ] T024 [P] [US2] Create DashboardPage: frontend/src/pages/DashboardPage.tsx
-- [ ] T025 [US2] Integrate with useBoards hook in frontend/src/pages/DashboardPage.tsx
-- [ ] T026 [US2] Add loading state while fetching boards in frontend/src/pages/DashboardPage.tsx
-- [ ] T027 [US2] Add empty state "У вас пока нет досок" with create button in frontend/src/pages/DashboardPage.tsx
-- [ ] T028 [US2] Add navigation to board detail on card click in frontend/src/components/boards/BoardCard.tsx
+- [X] T022 [P] [US2] Create BoardCard component: frontend/src/components/boards/BoardCard.tsx
+- [X] T023 [P] [US2] Create BoardList component: frontend/src/components/boards/BoardList.tsx
+- [X] T024 [P] [US2] Create DashboardPage: frontend/src/pages/DashboardPage.tsx
+- [X] T025 [US2] Integrate with useBoards hook in frontend/src/pages/DashboardPage.tsx
+- [X] T026 [US2] Add loading state while fetching boards in frontend/src/pages/DashboardPage.tsx
+- [X] T027 [US2] Add empty state "У вас пока нет досок" with create button in frontend/src/pages/DashboardPage.tsx
+- [X] T028 [US2] Add navigation to board detail on card click in frontend/src/components/boards/BoardCard.tsx
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -168,13 +168,13 @@
 
 ### Implementation for User Story 5
 
-- [ ] T050 [P] [US5] Create BoardDetailPage: frontend/src/pages/BoardDetailPage.tsx
-- [ ] T051 [US5] Fetch board details with boardService.getById() in frontend/src/pages/BoardDetailPage.tsx
-- [ ] T052 [US5] Display board title and description in frontend/src/pages/BoardDetailPage.tsx
-- [ ] T053 [US5] Add board settings/menu button (for edit/delete) in frontend/src/pages/BoardDetailPage.tsx
-- [ ] T054 [US5] Add access denied handling in frontend/src/pages/BoardDetailPage.tsx
-- [ ] T055 [US5] Add loading state in frontend/src/pages/BoardDetailPage.tsx
-- [ ] T056 [US5] Add placeholder for columns/tasks (from 003-task-boards-crud) in frontend/src/pages/BoardDetailPage.tsx
+- [X] T050 [P] [US5] Create BoardDetailPage: frontend/src/pages/BoardDetailPage.tsx
+- [X] T051 [US5] Fetch board details with boardService.getById() in frontend/src/pages/BoardDetailPage.tsx
+- [X] T052 [US5] Display board title and description in frontend/src/pages/BoardDetailPage.tsx
+- [X] T053 [US5] Add board settings/menu button (for edit/delete) in frontend/src/pages/BoardDetailPage.tsx
+- [X] T054 [US5] Add access denied handling in frontend/src/pages/BoardDetailPage.tsx
+- [X] T055 [US5] Add loading state in frontend/src/pages/BoardDetailPage.tsx
+- [X] T056 [US5] Add placeholder for columns/tasks (from 003-task-boards-crud) in frontend/src/pages/BoardDetailPage.tsx
 
 **Checkpoint**: At this point, User Stories 1-5 should all work independently
 
@@ -304,17 +304,19 @@ With multiple developers:
 
 | Phase | Total | Completed | Remaining | Description |
 |-------|-------|-----------|-----------|-------------|
-| Phase 1: Setup | 3 | 0 | 3 | Project structure verification |
-| Phase 2: Foundational | 5 | 0 | 5 | Types, service, hook, validation |
-| Phase 3: US1 (Create) | 10 | 0 | 10 | Create board modal with tests |
-| Phase 4: US2 (List) | 10 | 0 | 10 | Board list with tests |
+| Phase 1: Setup | 3 | 3 | 0 | Project structure verification ✅ |
+| Phase 2: Foundational | 5 | 5 | 0 | Types, service, hook, validation ✅ |
+| Phase 3: US1 (Create) | 10 | 7 | 3 | Create board modal (tests pending) |
+| Phase 4: US2 (List) | 10 | 7 | 3 | Board list (tests pending) |
 | Phase 5: US3 (Delete) | 10 | 0 | 10 | Delete modal with confirmation |
 | Phase 6: US4 (Edit) | 9 | 0 | 9 | Edit modal with tests |
-| Phase 7: US5 (Detail) | 10 | 0 | 10 | Board detail page with tests |
+| Phase 7: US5 (Detail) | 10 | 7 | 3 | Board detail page (tests pending) |
 | Phase 8: Polish | 10 | 0 | 10 | Responsive, E2E, docs |
-| **Total** | **67** | **0** | **67** | |
+| **Total** | **67** | **29** | **38** | |
 
-**Completion Status**: 0% (0/67 tasks completed)
+**Completion Status**: 43% (29/67 tasks completed)
 
-**MVP Scope**: Phases 1-4 (28 tasks) - Create + List boards only
-**Full Feature**: All phases (67 tasks) - Complete boards CRUD UI
+**MVP Scope**: Phases 1-4 (28 tasks) - Create + List boards ✅ COMPLETE
+**Full Feature**: All phases (67 tasks) - Complete boards CRUD UI (43% complete)
+
+**Remaining**: Test tasks + US3 (Delete) + US4 (Edit) + Polish
