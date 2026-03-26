@@ -21,6 +21,7 @@ async def upgrade(connection):
             role VARCHAR(20) NOT NULL DEFAULT 'member',
             permissions JSONB DEFAULT '["read"]' NOT NULL,
             created_at TIMESTAMP DEFAULT NOW() NOT NULL,
+            updated_at TIMESTAMP DEFAULT NOW() NOT NULL,
             UNIQUE (board_id, user_id)
         )
     """))
