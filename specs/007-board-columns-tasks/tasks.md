@@ -224,12 +224,12 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T065 [P] Add responsive CSS for mobile devices (320px-768px) in frontend/src/styles/index.css
-- [ ] T066 [P] Add loading skeletons for board detail in frontend/src/components/board/BoardSkeleton.tsx
-- [ ] T067 [P] Add error boundary component in frontend/src/components/common/ErrorBoundary.tsx (from 005-frontend-auth)
-- [ ] T068 [P] Add toast notifications for success/error messages in frontend/src/components/common/Toast.tsx (from 005-frontend-auth)
-- [ ] T069 [P] Add polling interval configuration (30 seconds) in frontend/src/hooks/useBoard.ts
-- [ ] T070 [P] Add column/task count limits validation (20 columns, 100 tasks) in frontend/src/hooks/useBoard.ts
+- [X] T065 [P] Add responsive CSS for mobile devices (320px-768px) in frontend/src/styles/index.css
+- [X] T066 [P] Add loading skeletons for board detail in frontend/src/components/board/BoardSkeleton.tsx
+- [X] T067 [P] Add error boundary component in frontend/src/components/common/ErrorBoundary.tsx (from 005-frontend-auth)
+- [X] T068 [P] Add toast notifications for success/error messages in frontend/src/components/common/Toast.tsx (from 005-frontend-auth)
+- [X] T069 [P] Add polling interval configuration (30 seconds) in frontend/src/hooks/useBoard.ts
+- [X] T070 [P] Add column/task count limits validation (20 columns, 100 tasks) in frontend/src/hooks/useBoard.ts
 - [ ] T071 [P] Add E2E tests with Playwright in frontend/tests/e2e/board-columns-tasks.spec.ts
 - [ ] T072 [P] Add accessibility (a11y) tests in frontend/tests/a11y/
 - [ ] T073 Run full test suite (unit + integration + E2E)

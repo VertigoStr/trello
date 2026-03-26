@@ -1,8 +1,9 @@
 /**
- * Error Boundary component for catching React errors.
+ * Error boundary component for catching React errors.
  */
 
 import React, { Component, ErrorInfo, ReactNode } from 'react'
+import { Alert, Button, Container } from 'react-bootstrap'
 
 interface Props {
   children: ReactNode
@@ -35,32 +36,26 @@ export class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <div className="max-w-md w-full bg-white shadow-md rounded-lg p-8">
-            <h1 className="text-2xl font-bold text-red-600 mb-4">
-              Что-то пошло не так
-            </h1>
-            <p className="text-gray-600 mb-4">
-              Произошла ошибка при загрузке приложения. Пожалуйста, обновите страницу или попробуйте позже.
+        <Container className="py-5">
+          <Alert variant="danger">
+            <Alert.Heading>Произошла ошибка</Alert.Heading>
+            <p>
+              {this.state.error?.message || 'Что-то пошло не так'}
             </p>
-            {this.state.error && (
-              <pre className="bg-gray-100 p-4 rounded text-sm text-gray-700 overflow-auto">
-                {this.state.error.message}
-              </pre>
-            )}
-            <button
-              onClick={() => window.location.reload()}
-              className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Обновить страницу
-            </button>
-          </div>
-        </div>
+            <hr />
+            <div className="d-flex justify-content-end">
+              <Button
+                variant="outline-danger"
+                onClick={() => window.location.reload()}
+              >
+                Перезагрузить страницу
+              </Button>
+            </div>
+          </Alert>
+        </Container>
       )
     }
 
     return this.props.children
   }
 }
-
-export default ErrorBoundary
