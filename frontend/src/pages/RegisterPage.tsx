@@ -7,12 +7,13 @@ import { useNavigate, Link } from 'react-router-dom'
 import { Input } from '@/components/common/Input'
 import { Button } from '@/components/common/Button'
 import { FormError } from '@/components/common/FormError'
-import { authService } from '@/services/authService'
+import { useAuth } from '@/hooks/useAuth'
 import { validateRegisterForm } from '@/utils/validation'
 import { ROUTES } from '@/types/auth'
 
 export function RegisterPage() {
   const navigate = useNavigate()
+  const { register } = useAuth()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -52,7 +53,7 @@ export function RegisterPage() {
     setIsLoading(true)
 
     try {
-      await authService.register(formData.name, formData.email, formData.password, formData.password_confirm)
+      await register(formData.name, formData.email, formData.password, formData.password_confirm)
       navigate(ROUTES.HOME)
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'Registration failed')

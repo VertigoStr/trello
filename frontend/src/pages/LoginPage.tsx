@@ -7,13 +7,14 @@ import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { Input } from '@/components/common/Input'
 import { Button } from '@/components/common/Button'
 import { FormError } from '@/components/common/FormError'
-import { authService } from '@/services/authService'
+import { useAuth } from '@/hooks/useAuth'
 import { validateLoginForm } from '@/utils/validation'
 import { ROUTES } from '@/types/auth'
 
 export function LoginPage() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { login } = useAuth()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -47,7 +48,7 @@ export function LoginPage() {
     setIsLoading(true)
 
     try {
-      await authService.login(formData.email, formData.password)
+      await login(formData.email, formData.password)
       navigate(from, { replace: true })
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'Login failed')

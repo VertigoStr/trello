@@ -15,6 +15,7 @@ interface UseAuthReturn {
   isLoading: boolean
   error: string | null
   login: (email: string, password: string) => Promise<void>
+  register: (name: string, email: string, password: string, password_confirm: string) => Promise<void>
   logout: () => Promise<void>
   refetch: () => Promise<void>
 }
@@ -65,6 +66,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [fetchUser])
 
   /**
+   * Register user.
+   */
+  const register = useCallback(async (name: string, email: string, password: string, password_confirm: string) => {
+    await authService.register(name, email, password, password_confirm)
+    await fetchUser()
+  }, [fetchUser])
+
+  /**
    * Logout user.
    */
   const logout = useCallback(async () => {
@@ -86,6 +95,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isLoading,
     error,
     login,
+    register,
     logout,
     refetch: fetchUser,
   }
