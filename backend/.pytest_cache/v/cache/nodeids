@@ -1,0 +1,22 @@
+[
+  "tests/contract/test_boards_crud.py::TestCreateBoard::test_create_board_missing_title",
+  "tests/contract/test_boards_crud.py::TestCreateBoard::test_create_board_success",
+  "tests/contract/test_boards_crud.py::TestCreateBoard::test_create_board_title_too_long",
+  "tests/contract/test_boards_crud.py::TestCreateBoard::test_create_board_unauthorized",
+  "tests/contract/test_boards_crud.py::TestDeleteBoard::test_delete_board_not_found",
+  "tests/contract/test_boards_crud.py::TestDeleteBoard::test_delete_board_unauthorized",
+  "tests/contract/test_boards_crud.py::TestGetBoard::test_get_board_not_found",
+  "tests/contract/test_boards_crud.py::TestGetBoard::test_get_board_unauthorized",
+  "tests/contract/test_boards_crud.py::TestListBoards::test_list_boards_success",
+  "tests/contract/test_boards_crud.py::TestListBoards::test_list_boards_unauthorized",
+  "tests/contract/test_boards_crud.py::TestListBoards::test_list_boards_with_pagination",
+  "tests/contract/test_boards_crud.py::TestUpdateBoard::test_update_board_not_found",
+  "tests/contract/test_boards_crud.py::TestUpdateBoard::test_update_board_unauthorized",
+  "tests/integration/test_board_flows.py::TestBoardCreationFlow::test_create_board_creates_in_database",
+  "tests/integration/test_board_flows.py::TestBoardCreationFlow::test_create_board_creates_owner_member",
+  "tests/integration/test_board_flows.py::TestBoardListFlow::test_list_boards_returns_user_boards",
+  "tests/unit/test_board_service.py::TestBoardServiceValidation::test_create_board_with_empty_title",
+  "tests/unit/test_board_service.py::TestBoardServiceValidation::test_create_board_with_long_title",
+  "tests/unit/test_board_service.py::TestBoardServiceValidation::test_create_board_with_valid_title",
+  "tests/unit/test_board_service.py::TestPermissionService::test_owner_has_all_permissions"
+]

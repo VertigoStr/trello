@@ -17,7 +17,7 @@ from src.api.schemas.task import (
 )
 from src.middleware.auth_middleware import get_current_user
 
-router = APIRouter(prefix="/api", tags=["tasks"])
+router = APIRouter(tags=["tasks"])
 
 
 @router.post(
