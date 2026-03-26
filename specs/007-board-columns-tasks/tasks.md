@@ -86,20 +86,20 @@
 
 ### Tests for User Story 2
 
-- [ ] T019 [P] [US2] Component test for CreateTaskModal in frontend/tests/components/modals/CreateTaskModal.test.tsx
-- [ ] T020 [P] [US2] Integration test for create task flow in frontend/tests/integration/CreateTaskFlow.test.tsx
-- [ ] T021 [P] [US2] Test for task validation in frontend/tests/services/taskService.test.ts
+- [X] T019 [P] [US2] Component test for CreateTaskModal in frontend/tests/components/modals/CreateTaskModal.test.tsx
+- [X] T020 [P] [US2] Integration test for create task flow in frontend/tests/integration/CreateTaskFlow.test.tsx
+- [X] T021 [P] [US2] Test for task validation in frontend/tests/services/taskService.test.ts
 
 ### Implementation for User Story 2
 
-- [ ] T022 [P] [US2] Create CreateTaskModal component: frontend/src/components/modals/CreateTaskModal.tsx
-- [ ] T023 [P] [US2] Add form state management with useState in frontend/src/components/modals/CreateTaskModal.tsx
-- [ ] T024 [US2] Implement client-side validation (title 1-255 chars, description 0-10000 chars) in frontend/src/components/modals/CreateTaskModal.tsx
-- [ ] T025 [US2] Integrate with taskService.create() in frontend/src/services/taskService.ts
-- [ ] T026 [US2] Add error handling for API errors in frontend/src/components/modals/CreateTaskModal.tsx
-- [ ] T027 [US2] Add loading state during creation in frontend/src/components/modals/CreateTaskModal.tsx
+- [X] T022 [P] [US2] Create CreateTaskModal component: frontend/src/components/modals/CreateTaskModal.tsx
+- [X] T023 [P] [US2] Add form state management with useState in frontend/src/components/modals/CreateTaskModal.tsx
+- [X] T024 [US2] Implement client-side validation (title 1-255 chars, description 0-10000 chars) in frontend/src/components/modals/CreateTaskModal.tsx
+- [X] T025 [US2] Integrate with taskService.create() in frontend/src/services/taskService.ts
+- [X] T026 [US2] Add error handling for API errors in frontend/src/components/modals/CreateTaskModal.tsx
+- [X] T027 [US2] Add loading state during creation in frontend/src/components/modals/CreateTaskModal.tsx
 
-**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
+**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently ✅
 
 ---
 
