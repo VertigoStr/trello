@@ -61,20 +61,20 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T010 [P] [US1] Component test for CreateColumnModal in frontend/tests/components/modals/CreateColumnModal.test.tsx
-- [ ] T011 [P] [US1] Integration test for create column flow in frontend/tests/integration/CreateColumnFlow.test.tsx
-- [ ] T012 [P] [US1] Test for column validation in frontend/tests/services/columnService.test.ts
+- [X] T010 [P] [US1] Component test for CreateColumnModal in frontend/tests/components/modals/CreateColumnModal.test.tsx
+- [X] T011 [P] [US1] Integration test for create column flow in frontend/tests/integration/CreateColumnFlow.test.tsx
+- [X] T012 [P] [US1] Test for column validation in frontend/tests/services/columnService.test.ts
 
 ### Implementation for User Story 1
 
-- [ ] T013 [P] [US1] Create CreateColumnModal component: frontend/src/components/modals/CreateColumnModal.tsx
-- [ ] T014 [P] [US1] Add form state management with useState in frontend/src/components/modals/CreateColumnModal.tsx
-- [ ] T015 [US1] Implement client-side validation (title 1-255 chars) in frontend/src/components/modals/CreateColumnModal.tsx
-- [ ] T016 [US1] Integrate with columnService.create() in frontend/src/services/columnService.ts
-- [ ] T017 [US1] Add error handling for API errors (validation, auth) in frontend/src/components/modals/CreateColumnModal.tsx
-- [ ] T018 [US1] Add loading state during creation in frontend/src/components/modals/CreateColumnModal.tsx
+- [X] T013 [P] [US1] Create CreateColumnModal component: frontend/src/components/modals/CreateColumnModal.tsx
+- [X] T014 [P] [US1] Add form state management with useState in frontend/src/components/modals/CreateColumnModal.tsx
+- [X] T015 [US1] Implement client-side validation (title 1-255 chars) in frontend/src/components/modals/CreateColumnModal.tsx
+- [X] T016 [US1] Integrate with columnService.create() in frontend/src/services/columnService.ts
+- [X] T017 [US1] Add error handling for API errors (validation, auth) in frontend/src/components/modals/CreateColumnModal.tsx
+- [X] T018 [US1] Add loading state during creation in frontend/src/components/modals/CreateColumnModal.tsx
 
-**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
+**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently ✅
 
 ---
 
