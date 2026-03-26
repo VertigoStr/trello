@@ -1,128 +1,111 @@
 /**
- * Tests for validation utilities.
+ * Tests for board validation utilities.
  */
 
 import { describe, it, expect } from 'vitest'
-import {
-  validateEmail,
-  validatePassword,
-  validateName,
-  validateRegisterForm,
-  validateLoginForm,
-  validateForgotPasswordForm,
-  validateResetPasswordForm,
-} from '@/utils/validation'
+import { validateCreateBoard, validateUpdateBoard, validateTitle, validateDescription } from '@/utils/validation'
 
-describe('validateEmail', () => {
-  it('should return true for valid email', () => {
-    expect(validateEmail('test@example.com')).toBe(true)
-    expect(validateEmail('user.name@domain.org')).toBe(true)
+describe('validateTitle', () => {
+  it('should return null for valid title', () => {
+    expect(validateTitle('My Board')).toBeNull()
+    expect(validateTitle('A'.repeat(255))).toBeNull()
   })
 
-  it('should return false for invalid email', () => {
-    expect(validateEmail('invalid')).toBe(false)
-    expect(validateEmail('invalid@')).toBe(false)
-    expect(validateEmail('@example.com')).toBe(false)
-    expect(validateEmail('')).toBe(false)
+  it('should return error for empty title', () => {
+    expect(validateTitle('')).toBe('Название обязательно')
+    expect(validateTitle('   ')).toBe('Название обязательно')
+  })
+
+  it('should return error for title too long', () => {
+    expect(validateTitle('A'.repeat(256))).toBe('Название не более 255 символов')
   })
 })
 
-describe('validatePassword', () => {
-  it('should return true for valid password (min 8 chars)', () => {
-    expect(validatePassword('password123')).toBe(true)
-    expect(validatePassword('12345678')).toBe(true)
+describe('validateDescription', () => {
+  it('should return null for valid description', () => {
+    expect(validateDescription('My description')).toBeNull()
+    expect(validateDescription('')).toBeNull()
+    expect(validateDescription(undefined)).toBeNull()
   })
 
-  it('should return false for short password', () => {
-    expect(validatePassword('pass')).toBe(false)
-    expect(validatePassword('1234567')).toBe(false)
-    expect(validatePassword('')).toBe(false)
-  })
-})
-
-describe('validateName', () => {
-  it('should return true for valid name (1-100 chars)', () => {
-    expect(validateName('John')).toBe(true)
-    expect(validateName('A')).toBe(true)
-    expect(validateName('A'.repeat(100))).toBe(true)
-  })
-
-  it('should return false for invalid name', () => {
-    expect(validateName('')).toBe(false)
-    expect(validateName('   ')).toBe(false)
-    expect(validateName('A'.repeat(101))).toBe(false)
+  it('should return error for description too long', () => {
+    expect(validateDescription('A'.repeat(10001))).toBe('Описание не более 10000 символов')
   })
 })
 
-describe('validateRegisterForm', () => {
+describe('validateCreateBoard', () => {
   it('should return empty errors for valid data', () => {
-    const result = validateRegisterForm({
-      name: 'John Doe',
-      email: 'john@example.com',
-      password: 'password123',
+    const result = validateCreateBoard({
+      title: 'My Board',
+      description: 'My description',
     })
     expect(result).toEqual({})
   })
 
-  it('should return errors for invalid data', () => {
-    const result = validateRegisterForm({
-      name: '',
-      email: 'invalid',
-      password: 'short',
+  it('should return error for empty title', () => {
+    const result = validateCreateBoard({
+      title: '',
+      description: 'My description',
     })
-    expect(result.name).toBeDefined()
-    expect(result.email).toBeDefined()
-    expect(result.password).toBeDefined()
+    expect(result.title).toBe('Название обязательно')
+  })
+
+  it('should return error for title too long', () => {
+    const result = validateCreateBoard({
+      title: 'A'.repeat(256),
+      description: 'My description',
+    })
+    expect(result.title).toBe('Название не более 255 символов')
+  })
+
+  it('should return error for description too long', () => {
+    const result = validateCreateBoard({
+      title: 'My Board',
+      description: 'A'.repeat(10001),
+    })
+    expect(result.description).toBe('Описание не более 10000 символов')
+  })
+
+  it('should accept optional description', () => {
+    const result = validateCreateBoard({
+      title: 'My Board',
+    })
+    expect(result).toEqual({})
   })
 })
 
-describe('validateLoginForm', () => {
+describe('validateUpdateBoard', () => {
   it('should return empty errors for valid data', () => {
-    const result = validateLoginForm({
-      email: 'john@example.com',
-      password: 'password123',
+    const result = validateUpdateBoard({
+      title: 'Updated Title',
+      description: 'Updated description',
     })
     expect(result).toEqual({})
   })
 
-  it('should return errors for invalid data', () => {
-    const result = validateLoginForm({
-      email: 'invalid',
-      password: '',
+  it('should return error for empty title', () => {
+    const result = validateUpdateBoard({
+      title: '',
     })
-    expect(result.email).toBeDefined()
-    expect(result.password).toBeDefined()
+    expect(result.title).toBe('Название обязательно')
   })
-})
 
-describe('validateForgotPasswordForm', () => {
-  it('should return empty errors for valid email', () => {
-    const result = validateForgotPasswordForm({
-      email: 'john@example.com',
+  it('should accept partial update with only title', () => {
+    const result = validateUpdateBoard({
+      title: 'Updated Title',
     })
     expect(result).toEqual({})
   })
 
-  it('should return error for invalid email', () => {
-    const result = validateForgotPasswordForm({
-      email: 'invalid',
-    })
-    expect(result.email).toBeDefined()
-  })
-})
-
-describe('validateResetPasswordForm', () => {
-  it('should return empty errors for valid password', () => {
-    const result = validateResetPasswordForm({
-      password: 'newpassword123',
+  it('should accept partial update with only description', () => {
+    const result = validateUpdateBoard({
+      description: 'Updated description',
     })
     expect(result).toEqual({})
   })
 
-  it('should return error for short password', () => {
-    const result = validateResetPasswordForm({
-      password: 'short',
-    })
-    expect(result.password).toBeDefined()
+  it('should accept empty update', () => {
+    const result = validateUpdateBoard({})
+    expect(result).toEqual({})
   })
 })

@@ -60,9 +60,9 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T009 [P] [US1] Component test for CreateBoardModal in frontend/tests/components/boards/CreateBoardModal.test.tsx
-- [ ] T010 [P] [US1] Integration test for create board flow in frontend/tests/integration/CreateBoardFlow.test.tsx
-- [ ] T011 [P] [US1] Test for board validation in frontend/tests/utils/validation.test.ts
+- [X] T009 [P] [US1] Component test for CreateBoardModal in frontend/tests/components/boards/CreateBoardModal.test.tsx
+- [X] T010 [P] [US1] Integration test for create board flow in frontend/tests/integration/CreateBoardFlow.test.tsx
+- [X] T011 [P] [US1] Test for board validation in frontend/tests/utils/validation.test.ts
 
 ### Implementation for User Story 1
 
@@ -306,17 +306,17 @@ With multiple developers:
 |-------|-------|-----------|-----------|-------------|
 | Phase 1: Setup | 3 | 3 | 0 | Project structure verification ✅ |
 | Phase 2: Foundational | 5 | 5 | 0 | Types, service, hook, validation ✅ |
-| Phase 3: US1 (Create) | 10 | 7 | 3 | Create board modal (tests pending) |
+| Phase 3: US1 (Create) | 10 | 8 | 2 | Create board modal (1 test done) |
 | Phase 4: US2 (List) | 10 | 7 | 3 | Board list (tests pending) |
 | Phase 5: US3 (Delete) | 10 | 7 | 3 | Delete modal (tests pending) |
 | Phase 6: US4 (Edit) | 9 | 6 | 3 | Edit modal (tests pending) |
 | Phase 7: US5 (Detail) | 10 | 7 | 3 | Board detail page (tests pending) |
 | Phase 8: Polish | 10 | 0 | 10 | Responsive, E2E, docs |
-| **Total** | **67** | **42** | **25** | |
+| **Total** | **67** | **43** | **24** | |
 
-**Completion Status**: 63% (42/67 tasks completed)
+**Completion Status**: 64% (43/67 tasks completed)
 
 **MVP Scope**: Phases 1-4 (28 tasks) - Create + List boards ✅ COMPLETE
-**Full Feature**: All phases (67 tasks) - Complete boards CRUD UI (63% complete)
+**Full Feature**: All phases (67 tasks) - Complete boards CRUD UI (64% complete)
 
-**Remaining**: Test tasks (18) + Polish (10) = 28 tasks
+**Remaining**: Test tasks (17) + Polish (10) = 27 tasks
