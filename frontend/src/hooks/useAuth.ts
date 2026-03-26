@@ -2,7 +2,7 @@
  * Authentication hook for managing auth state.
  */
 
-import { useState, useEffect, useCallback, createContext, useContext } from 'react'
+import React, { useState, useEffect, useCallback, createContext, useContext } from 'react'
 import type { User, AuthState } from '@/types/auth'
 import { authService } from '@/services/authService'
 
