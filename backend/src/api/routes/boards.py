@@ -76,16 +76,10 @@ async def create_board(
         )
 
 
-@router.get(
-    "",
-    response_model=dict,
-    status_code=status.HTTP_200_OK,
-    summary="List boards",
-    description="Get all boards for the current user with pagination.",
-)
+@router.get("", response_model=dict, status_code=200)
 async def list_boards(
-    page: int = Query(1, ge=1, description="Page number"),
-    limit: int = Query(20, ge=1, le=100, description="Items per page"),
+    page: Optional[int] = Query(1, ge=1, description="Page number"),
+    limit: Optional[int] = Query(20, ge=1, le=100, description="Items per page"),
     status_filter: Optional[str] = Query(None, description="Filter by status (active/archived)"),
     current_user: dict = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
