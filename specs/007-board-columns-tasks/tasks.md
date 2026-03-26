@@ -137,18 +137,18 @@
 
 ### Tests for User Story 4
 
-- [ ] T038 [P] [US4] Component test for EditTaskModal in frontend/tests/components/modals/EditTaskModal.test.tsx
-- [ ] T039 [P] [US4] Integration test for edit task flow in frontend/tests/integration/EditTaskFlow.test.tsx
+- [X] T038 [P] [US4] Component test for EditTaskModal in frontend/tests/components/modals/EditTaskModal.test.tsx
+- [X] T039 [P] [US4] Integration test for edit task flow in frontend/tests/integration/EditTaskFlow.test.tsx
 
 ### Implementation for User Story 4
 
-- [ ] T040 [P] [US4] Create EditTaskModal component: frontend/src/components/modals/EditTaskModal.tsx
-- [ ] T041 [US4] Pre-fill form with current task data in frontend/src/components/modals/EditTaskModal.tsx
-- [ ] T042 [US4] Implement validation (same as create) in frontend/src/components/modals/EditTaskModal.tsx
-- [ ] T043 [US4] Integrate with taskService.update() in frontend/src/services/taskService.ts
-- [ ] T044 [US4] Add error handling for access denied in frontend/src/components/modals/EditTaskModal.tsx
+- [X] T040 [P] [US4] Create EditTaskModal component: frontend/src/components/modals/EditTaskModal.tsx
+- [X] T041 [US4] Pre-fill form with current task data in frontend/src/components/modals/EditTaskModal.tsx
+- [X] T042 [US4] Implement validation (same as create) in frontend/src/components/modals/EditTaskModal.tsx
+- [X] T043 [US4] Integrate with taskService.update() in frontend/src/services/taskService.ts
+- [X] T044 [US4] Add error handling for access denied in frontend/src/components/modals/EditTaskModal.tsx
 
-**Checkpoint**: At this point, User Stories 1-4 should all work independently
+**Checkpoint**: At this point, User Stories 1-4 should all work independently ✅
 
 ---
 
