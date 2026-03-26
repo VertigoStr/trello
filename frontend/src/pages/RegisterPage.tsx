@@ -17,6 +17,7 @@ export function RegisterPage() {
     name: '',
     email: '',
     password: '',
+    password_confirm: '',
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitError, setSubmitError] = useState<string | null>(null)
@@ -42,10 +43,16 @@ export function RegisterPage() {
       return
     }
 
+    // Check passwords match
+    if (formData.password !== formData.password_confirm) {
+      setErrors({ password_confirm: 'Пароли не совпадают' })
+      return
+    }
+
     setIsLoading(true)
 
     try {
-      await authService.register(formData.name, formData.email, formData.password)
+      await authService.register(formData.name, formData.email, formData.password, formData.password_confirm)
       navigate(ROUTES.HOME)
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'Registration failed')
@@ -94,6 +101,17 @@ export function RegisterPage() {
             onChange={handleChange}
             error={errors.password}
             placeholder="Минимум 8 символов"
+            autoComplete="new-password"
+          />
+
+          <Input
+            label="Подтверждение пароля"
+            type="password"
+            name="password_confirm"
+            value={formData.password_confirm}
+            onChange={handleChange}
+            error={errors.password_confirm}
+            placeholder="Повторите пароль"
             autoComplete="new-password"
           />
 

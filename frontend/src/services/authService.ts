@@ -61,13 +61,14 @@ async function fetchWithAuth<T>(
 export async function register(
   name: string,
   email: string,
-  password: string
+  password: string,
+  password_confirm: string
 ): Promise<{ user: User; accessToken: string }> {
   const response = await fetchWithAuth<RegisterResponse>(
     `${API_BASE}/api/auth/register`,
     {
       method: 'POST',
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password, password_confirm }),
     }
   )
 
