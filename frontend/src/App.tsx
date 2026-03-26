@@ -10,13 +10,13 @@ import { Header } from '@/components/layout/Header'
 import { ROUTES } from '@/types/auth'
 
 // Lazy load pages
-const LoginPage = React.lazy(() => import('@/pages/LoginPage'))
-const RegisterPage = React.lazy(() => import('@/pages/RegisterPage'))
-const DashboardPage = React.lazy(() => import('@/pages/DashboardPage'))
-const BoardDetailPage = React.lazy(() => import('@/pages/BoardDetailPage'))
-const ProfilePage = React.lazy(() => import('@/pages/ProfilePage'))
-const ForgotPasswordPage = React.lazy(() => import('@/pages/ForgotPasswordPage'))
-const ResetPasswordPage = React.lazy(() => import('@/pages/ResetPasswordPage'))
+const LoginPage = React.lazy(() => import('@/pages/LoginPage') as Promise<{ default: React.ComponentType<any> }>)
+const RegisterPage = React.lazy(() => import('@/pages/RegisterPage') as Promise<{ default: React.ComponentType<any> }>)
+const DashboardPage = React.lazy(() => import('@/pages/DashboardPage') as Promise<{ default: React.ComponentType<any> }>)
+const BoardDetailPage = React.lazy(() => import('@/pages/BoardDetailPage') as Promise<{ default: React.ComponentType<any> }>)
+const ProfilePage = React.lazy(() => import('@/pages/ProfilePage') as Promise<{ default: React.ComponentType<any> }>)
+const ForgotPasswordPage = React.lazy(() => import('@/pages/ForgotPasswordPage') as Promise<{ default: React.ComponentType<any> }>)
+const ResetPasswordPage = React.lazy(() => import('@/pages/ResetPasswordPage') as Promise<{ default: React.ComponentType<any> }>)
 
 /**
  * Loading fallback component.
