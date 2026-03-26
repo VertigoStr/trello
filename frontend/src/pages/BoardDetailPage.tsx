@@ -20,6 +20,7 @@ import { EditBoardModal } from '@/components/boards/EditBoardModal'
 import { DeleteBoardModal } from '@/components/boards/DeleteBoardModal'
 import type { Board } from '@/types/board'
 import type { Task } from '@/types/task'
+import type { Column } from '@/types/column'
 
 export function BoardDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -112,9 +113,10 @@ export function BoardDetailPage() {
    */
   const handleEditColumnSuccess = async (data: { title: string }) => {
     if (selectedColumn) {
-      await updateColumn(selectedColumn.id, data)
+      const updated = await updateColumn(selectedColumn.id, data)
       setShowEditColumnModal(false)
       setSelectedColumn(null)
+      return updated
     }
   }
 
@@ -254,7 +256,9 @@ export function BoardDetailPage() {
       <CreateColumnModal
         show={showCreateColumnModal}
         onHide={() => setShowCreateColumnModal(false)}
-        onCreate={createColumn}
+        onCreate={async (data) => {
+          await createColumn(data)
+        }}
       />
 
       {/* Create task modal */}
@@ -264,7 +268,9 @@ export function BoardDetailPage() {
           setShowCreateTaskModal(false)
           setSelectedColumnId(null)
         }}
-        onCreate={selectedColumnId ? (data) => createTask(selectedColumnId, data) : async () => {}}
+        onCreate={selectedColumnId ? async (data) => {
+          await createTask(selectedColumnId, data)
+        } : undefined}
       />
 
       {/* Edit board modal */}
