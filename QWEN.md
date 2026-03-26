@@ -12,6 +12,7 @@ Auto-generated from all feature plans. Last updated: 2026-03-26
 - localStorage для JWT токена (005-frontend-auth)
 - TypeScript 5+ (из 005-frontend-auth) + React 18+, React Router 6+, Bootstrap 5, Vite (006-frontend-boards-crud)
 - localStorage для JWT токена (из 005-frontend-auth) (006-frontend-boards-crud)
+- TypeScript 5+ (из 005-frontend-auth) + React 18+, React Router 6+, Bootstrap 5, Vite, @dnd-kit (для drag-and-drop) (007-board-columns-tasks)
 
 - Bash 5.x (macOS/Linux), PowerShell 7.x (Windows) + Docker 20+, docker-compose 2.x+, Gi (001-local-dev-env)
 
@@ -31,9 +32,9 @@ tests/
 Bash 5.x (macOS/Linux), PowerShell 7.x (Windows): Follow standard conventions
 
 ## Recent Changes
+- 007-board-columns-tasks: Added TypeScript 5+ (из 005-frontend-auth) + React 18+, React Router 6+, Bootstrap 5, Vite, @dnd-kit (для drag-and-drop)
 - 006-frontend-boards-crud: Added TypeScript 5+ (из 005-frontend-auth) + React 18+, React Router 6+, Bootstrap 5, Vite
 - 005-frontend-auth: Added TypeScript 5+ (из clarifications spec.md) + React 18+, React Router 6+, Vite
-- 004-create-tasks-boards: Added Python 3.11+ (из existing auth API) + FastAPI, SQLAlchemy (async), PyJWT (из auth API), psycopg2, asyncpg
 
 
 <!-- MANUAL ADDITIONS START -->
