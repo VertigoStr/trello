@@ -13,6 +13,7 @@ import { TaskCard } from '@/components/board/TaskCard'
 import { CreateColumnModal } from '@/components/modals/CreateColumnModal'
 import { CreateTaskModal } from '@/components/modals/CreateTaskModal'
 import { EditTaskModal } from '@/components/modals/EditTaskModal'
+import { EditColumnModal } from '@/components/modals/EditColumnModal'
 import { DeleteConfirmModal } from '@/components/modals/DeleteConfirmModal'
 import { EditBoardModal } from '@/components/boards/EditBoardModal'
 import { DeleteBoardModal } from '@/components/boards/DeleteBoardModal'
@@ -22,7 +23,7 @@ import type { Task } from '@/types/task'
 export function BoardDetailPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { board, columns, tasks, loading, error, createColumn, createTask, moveTask, deleteTask } = useBoard(id!)
+  const { board, columns, tasks, loading, error, createColumn, createTask, moveTask, deleteTask, updateColumn } = useBoard(id!)
   const [showCreateColumnModal, setShowCreateColumnModal] = useState(false)
   const [showCreateTaskModal, setShowCreateTaskModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
@@ -30,7 +31,9 @@ export function BoardDetailPage() {
   const [showMenu, setShowMenu] = useState(false)
   const [selectedColumnId, setSelectedColumnId] = useState<string | null>(null)
   const [selectedTask, setSelectedTask] = useState<Task | null>(null)
+  const [selectedColumn, setSelectedColumn] = useState<Column | null>(null)
   const [showDeleteTaskModal, setShowDeleteTaskModal] = useState(false)
+  const [showEditColumnModal, setShowEditColumnModal] = useState(false)
 
   /**
    * Handle drag end.
@@ -91,6 +94,25 @@ export function BoardDetailPage() {
       await deleteTask(selectedTask.id)
       setShowDeleteTaskModal(false)
       setSelectedTask(null)
+    }
+  }
+
+  /**
+   * Handle edit column click.
+   */
+  const handleEditColumn = (column: Column) => {
+    setSelectedColumn(column)
+    setShowEditColumnModal(true)
+  }
+
+  /**
+   * Handle edit column success.
+   */
+  const handleEditColumnSuccess = async (data: { title: string }) => {
+    if (selectedColumn) {
+      await updateColumn(selectedColumn.id, data)
+      setShowEditColumnModal(false)
+      setSelectedColumn(null)
     }
   }
 
@@ -176,6 +198,7 @@ export function BoardDetailPage() {
                 tasks={tasks[column.id] || []}
                 onAddTask={() => handleAddTask(column.id)}
                 onTaskDelete={handleDeleteTask}
+                onEditColumn={() => handleEditColumn(column)}
               />
             </div>
           ))}
@@ -248,6 +271,17 @@ export function BoardDetailPage() {
         itemName={selectedTask?.title || ''}
         itemType="task"
         onDelete={handleDeleteTaskConfirm}
+      />
+
+      {/* Edit column modal */}
+      <EditColumnModal
+        show={showEditColumnModal}
+        onHide={() => {
+          setShowEditColumnModal(false)
+          setSelectedColumn(null)
+        }}
+        column={selectedColumn}
+        onUpdate={handleEditColumnSuccess}
       />
     </Container>
   )

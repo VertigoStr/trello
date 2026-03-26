@@ -183,17 +183,17 @@
 
 ### Tests for User Story 6
 
-- [ ] T052 [P] [US6] Component test for EditColumnModal in frontend/tests/components/modals/EditColumnModal.test.tsx
-- [ ] T053 [P] [US6] Integration test for edit column flow in frontend/tests/integration/EditColumnFlow.test.tsx
+- [X] T052 [P] [US6] Component test for EditColumnModal in frontend/tests/components/modals/EditColumnModal.test.tsx
+- [X] T053 [P] [US6] Integration test for edit column flow in frontend/tests/integration/EditColumnFlow.test.tsx
 
 ### Implementation for User Story 6
 
-- [ ] T054 [P] [US6] Create EditColumnModal component: frontend/src/components/modals/EditColumnModal.tsx
-- [ ] T055 [US6] Pre-fill form with current column data in frontend/src/components/modals/EditColumnModal.tsx
-- [ ] T056 [US6] Integrate with columnService.update() in frontend/src/services/columnService.ts
-- [ ] T057 [US6] Add error handling for access denied in frontend/src/components/modals/EditColumnModal.tsx
+- [X] T054 [P] [US6] Create EditColumnModal component: frontend/src/components/modals/EditColumnModal.tsx
+- [X] T055 [US6] Pre-fill form with current column data in frontend/src/components/modals/EditColumnModal.tsx
+- [X] T056 [US6] Integrate with columnService.update() in frontend/src/services/columnService.ts
+- [X] T057 [US6] Add error handling for access denied in frontend/src/components/modals/EditColumnModal.tsx
 
-**Checkpoint**: At this point, User Stories 1-6 should all work independently
+**Checkpoint**: At this point, User Stories 1-6 should all work independently ✅
 
 ---
 
