@@ -118,8 +118,8 @@
 
 ### Tests for User Story 3
 
-- [ ] T035 [P] [US3] Test for logout functionality in frontend/tests/hooks/useAuth.test.ts
-- [ ] T036 [P] [US3] Test for ProtectedRoute redirect after logout in frontend/tests/components/ProtectedRoute.test.tsx
+- [X] T035 [P] [US3] Test for logout functionality in frontend/tests/hooks/useAuth.test.ts
+- [X] T036 [P] [US3] Test for ProtectedRoute redirect after logout in frontend/tests/components/ProtectedRoute.test.tsx
 
 ### Implementation for User Story 3
 
@@ -141,8 +141,8 @@
 
 ### Tests for User Story 4
 
-- [ ] T042 [P] [US4] Component test for ProfilePage in frontend/tests/pages/ProfilePage.test.tsx
-- [ ] T043 [P] [US4] Integration test for profile edit flow in frontend/tests/integration/ProfileFlow.test.tsx
+- [X] T042 [P] [US4] Component test for ProfilePage in frontend/tests/pages/ProfilePage.test.tsx
+- [X] T043 [P] [US4] Integration test for profile edit flow in frontend/tests/integration/ProfileFlow.test.tsx
 
 ### Implementation for User Story 4
 
@@ -165,8 +165,8 @@
 
 ### Tests for User Story 5
 
-- [ ] T050 [P] [US5] Component test for DashboardPage in frontend/tests/pages/DashboardPage.test.tsx
-- [ ] T051 [P] [US5] Integration test for dashboard flow in frontend/tests/integration/DashboardFlow.test.tsx
+- [X] T050 [P] [US5] Component test for DashboardPage in frontend/tests/pages/DashboardPage.test.tsx
+- [X] T051 [P] [US5] Integration test for dashboard flow in frontend/tests/integration/DashboardFlow.test.tsx
 
 ### Implementation for User Story 5
 
@@ -189,9 +189,9 @@
 
 ### Tests for User Story 6
 
-- [ ] T058 [P] [US6] Component test for ForgotPasswordPage in frontend/tests/pages/ForgotPasswordPage.test.tsx
-- [ ] T059 [P] [US6] Component test for ResetPasswordPage in frontend/tests/pages/ResetPasswordPage.test.tsx
-- [ ] T060 [P] [US6] Integration test for password reset flow in frontend/tests/integration/PasswordResetFlow.test.tsx
+- [X] T058 [P] [US6] Component test for ForgotPasswordPage in frontend/tests/pages/ForgotPasswordPage.test.tsx
+- [X] T059 [P] [US6] Component test for ResetPasswordPage in frontend/tests/pages/ResetPasswordPage.test.tsx
+- [X] T060 [P] [US6] Integration test for password reset flow in frontend/tests/integration/PasswordResetFlow.test.tsx
 
 ### Implementation for User Story 6
 
@@ -343,16 +343,16 @@ With multiple developers:
 | Phase 2: Foundational | 8 | 8 | 0 | Types, validation, authService, hooks, components ✅ |
 | Phase 3: US1 (Register) | 10 | 10 | 0 | Registration page with tests ✅ |
 | Phase 4: US2 (Login) | 11 | 11 | 0 | Login page with tests ✅ |
-| Phase 5: US3 (Logout) | 7 | 5 | 2 | Logout functionality (tests pending) |
-| Phase 6: US4 (Profile) | 8 | 6 | 2 | Profile page (tests pending) |
-| Phase 7: US5 (Dashboard) | 8 | 6 | 2 | Dashboard page (tests pending) |
-| Phase 8: US6 (Reset) | 12 | 9 | 3 | Password reset pages (tests pending) |
+| Phase 5: US3 (Logout) | 7 | 7 | 0 | Logout functionality with tests ✅ |
+| Phase 6: US4 (Profile) | 8 | 8 | 0 | Profile page with tests ✅ |
+| Phase 7: US5 (Dashboard) | 8 | 8 | 0 | Dashboard page with tests ✅ |
+| Phase 8: US6 (Reset) | 12 | 12 | 0 | Password reset pages with tests ✅ |
 | Phase 9: Polish | 12 | 0 | 12 | Responsive, E2E, CI/CD, Docker |
-| **Total** | **81** | **60** | **21** | |
+| **Total** | **81** | **69** | **12** | |
 
-**Completion Status**: 74% (60/81 tasks completed)
+**Completion Status**: 85% (69/81 tasks completed)
 
 **MVP Scope**: Phases 1-4 (34 задачи) - Registration + Login ✅ COMPLETE
-**Full Feature**: All phases (81 задача) - Complete authentication UI (74% complete)
+**Full Feature**: All phases (81 задача) - Complete authentication UI (85% complete)
 
-**Remaining**: Test tasks (21) — Logout, Profile, Dashboard, Reset tests + Polish
+**Remaining**: Polish tasks (12) — Responsive CSS, E2E, CI/CD, Docker, Documentation
