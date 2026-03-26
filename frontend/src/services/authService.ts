@@ -74,17 +74,16 @@ export async function register(
 
   const data = await response.json()
 
-  if (data.status === 'error') {
-    throw new Error(data.error.message)
+  // Backend returns error in format: {detail: {code, message}}
+  if (!response.ok) {
+    const message = data.detail?.message || data.message || 'Registration failed'
+    throw new Error(message)
   }
 
-  if (data.status === 'success') {
-    const { user, accessToken } = data.data
-    localStorage.setItem('auth_token', accessToken)
-    return { user, accessToken }
-  }
-
-  throw new Error('Registration failed')
+  // Backend returns success in format: {user_id, email, name, access_token, token_type, expires_in}
+  const { access_token } = data
+  localStorage.setItem('auth_token', access_token)
+  return { user: data, accessToken: access_token }
 }
 
 /**
@@ -104,17 +103,16 @@ export async function login(
 
   const data = await response.json()
 
-  if (data.status === 'error') {
-    throw new Error(data.error.message)
+  // Backend returns error in format: {detail: {code, message}}
+  if (!response.ok) {
+    const message = data.detail?.message || data.message || 'Login failed'
+    throw new Error(message)
   }
 
-  if (data.status === 'success') {
-    const { user, accessToken } = data.data
-    localStorage.setItem('auth_token', accessToken)
-    return { user, accessToken }
-  }
-
-  throw new Error('Login failed')
+  // Backend returns success in format: {user_id, email, name, access_token, token_type, expires_in}
+  const { access_token, user } = data
+  localStorage.setItem('auth_token', access_token)
+  return { user, accessToken: access_token }
 }
 
 /**
