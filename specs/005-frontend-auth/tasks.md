@@ -91,9 +91,9 @@
 
 ### Tests for User Story 2
 
-- [ ] T024 [P] [US2] Component test for LoginPage form validation in frontend/tests/pages/LoginPage.test.tsx
-- [ ] T025 [P] [US2] Integration test for login flow in frontend/tests/integration/LoginFlow.test.tsx
-- [ ] T026 [P] [US2] Test for token storage in localStorage in frontend/tests/services/authService.test.ts
+- [X] T024 [P] [US2] Component test for LoginPage form validation in frontend/tests/pages/LoginPage.test.tsx
+- [X] T025 [P] [US2] Integration test for login flow in frontend/tests/integration/LoginFlow.test.tsx
+- [X] T026 [P] [US2] Test for token storage in localStorage in frontend/tests/services/authService.test.ts
 
 ### Implementation for User Story 2
 
@@ -342,17 +342,17 @@ With multiple developers:
 | Phase 1: Setup | 5 | 5 | 0 | Project structure, React + TypeScript + Vite ✅ |
 | Phase 2: Foundational | 8 | 8 | 0 | Types, validation, authService, hooks, components ✅ |
 | Phase 3: US1 (Register) | 10 | 10 | 0 | Registration page with tests ✅ |
-| Phase 4: US2 (Login) | 11 | 8 | 3 | Login page (tests pending) |
+| Phase 4: US2 (Login) | 11 | 11 | 0 | Login page with tests ✅ |
 | Phase 5: US3 (Logout) | 7 | 5 | 2 | Logout functionality (tests pending) |
 | Phase 6: US4 (Profile) | 8 | 6 | 2 | Profile page (tests pending) |
 | Phase 7: US5 (Dashboard) | 8 | 6 | 2 | Dashboard page (tests pending) |
 | Phase 8: US6 (Reset) | 12 | 9 | 3 | Password reset pages (tests pending) |
 | Phase 9: Polish | 12 | 0 | 12 | Responsive, E2E, CI/CD, Docker |
-| **Total** | **81** | **57** | **24** | |
+| **Total** | **81** | **60** | **21** | |
 
-**Completion Status**: 70% (57/81 tasks completed)
+**Completion Status**: 74% (60/81 tasks completed)
 
 **MVP Scope**: Phases 1-4 (34 задачи) - Registration + Login ✅ COMPLETE
-**Full Feature**: All phases (81 задача) - Complete authentication UI (70% complete)
+**Full Feature**: All phases (81 задача) - Complete authentication UI (74% complete)
 
-**Remaining**: Test tasks (24) — Login, Logout, Profile, Dashboard, Reset tests + Polish
+**Remaining**: Test tasks (21) — Logout, Profile, Dashboard, Reset tests + Polish
