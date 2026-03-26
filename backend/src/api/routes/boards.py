@@ -65,7 +65,7 @@ async def create_board(
             title=board.title,
             description=board.description,
             owner_id=board.owner_id,
-            status=board.status.value,
+            status=board.status,
             created_at=board.created_at,
             updated_at=board.updated_at,
         )
@@ -135,7 +135,7 @@ async def list_boards(
                 title=b.title,
                 description=b.description,
                 owner_id=b.owner_id,
-                status=b.status.value,
+                status=b.status,
                 created_at=b.created_at,
                 updated_at=b.updated_at,
             )
@@ -205,7 +205,7 @@ async def get_board(
         title=board.title,
         description=board.description,
         owner_id=board.owner_id,
-        status=board.status.value,
+        status=board.status,
         created_at=board.created_at,
         updated_at=board.updated_at,
     )
@@ -272,7 +272,7 @@ async def update_board(
             title=board.title,
             description=board.description,
             owner_id=board.owner_id,
-            status=board.status.value,
+            status=board.status,
             created_at=board.created_at,
             updated_at=board.updated_at,
         )
