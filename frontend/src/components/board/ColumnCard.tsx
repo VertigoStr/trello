@@ -15,23 +15,34 @@ interface ColumnCardProps {
   onAddTask: () => void
   onTaskDelete?: (task: Task) => void
   onEditColumn?: () => void
+  onDeleteColumn?: () => void
 }
 
-export function ColumnCard({ column, tasks, onAddTask, onTaskDelete, onEditColumn }: ColumnCardProps) {
+export function ColumnCard({ column, tasks, onAddTask, onTaskDelete, onEditColumn, onDeleteColumn }: ColumnCardProps) {
   return (
     <Card className="h-100">
       <Card.Header className="d-flex justify-content-between align-items-center bg-white">
         <div className="d-flex align-items-center">
           <Card.Title className="mb-0 h5">{column.title}</Card.Title>
-          {onEditColumn && (
+          {(onEditColumn || onDeleteColumn) && (
             <Dropdown className="ms-2">
               <Dropdown.Toggle variant="link" size="sm" className="text-muted p-0 border-0">
                 ⋮
               </Dropdown.Toggle>
               <Dropdown.Menu align="end">
-                <Dropdown.Item onClick={onEditColumn}>
-                  Переименовать
-                </Dropdown.Item>
+                {onEditColumn && (
+                  <Dropdown.Item onClick={onEditColumn}>
+                    Переименовать
+                  </Dropdown.Item>
+                )}
+                {onDeleteColumn && (
+                  <Dropdown.Item
+                    className="text-danger"
+                    onClick={onDeleteColumn}
+                  >
+                    Удалить колонку
+                  </Dropdown.Item>
+                )}
               </Dropdown.Menu>
             </Dropdown>
           )}

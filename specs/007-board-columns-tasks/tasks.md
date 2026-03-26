@@ -205,18 +205,18 @@
 
 ### Tests for User Story 7
 
-- [ ] T058 [P] [US7] Component test for DeleteColumnModal in frontend/tests/components/modals/DeleteColumnModal.test.tsx
-- [ ] T059 [P] [US7] Integration test for delete column flow in frontend/tests/integration/DeleteColumnFlow.test.tsx
+- [X] T058 [P] [US7] Component test for DeleteColumnModal in frontend/tests/components/modals/DeleteColumnModal.test.tsx
+- [X] T059 [P] [US7] Integration test for delete column flow in frontend/tests/integration/DeleteColumnFlow.test.tsx
 
 ### Implementation for User Story 7
 
-- [ ] T060 [P] [US7] Create DeleteColumnModal component with task count warning: frontend/src/components/modals/DeleteColumnModal.tsx
-- [ ] T061 [US7] Add confirmation dialog with task count in frontend/src/components/modals/DeleteColumnModal.tsx
-- [ ] T062 [US7] Integrate with columnService.delete() in frontend/src/services/columnService.ts
-- [ ] T063 [US7] Add optimistic update with rollback in frontend/src/hooks/useBoard.ts
-- [ ] T064 [US7] Add error handling for owner-only restriction in frontend/src/hooks/useBoard.ts
+- [X] T060 [P] [US7] Create DeleteColumnModal component with task count warning: frontend/src/components/modals/DeleteColumnModal.tsx
+- [X] T061 [US7] Add confirmation dialog with task count in frontend/src/components/modals/DeleteColumnModal.tsx
+- [X] T062 [US7] Integrate with columnService.delete() in frontend/src/services/columnService.ts
+- [X] T063 [US7] Add optimistic update with rollback in frontend/src/hooks/useBoard.ts
+- [X] T064 [US7] Add error handling for owner-only restriction in frontend/src/hooks/useBoard.ts
 
-**Checkpoint**: All user stories should now be independently functional
+**Checkpoint**: All user stories should now be independently functional ✅
 
 ---
 
