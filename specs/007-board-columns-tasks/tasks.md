@@ -111,21 +111,21 @@
 
 ### Tests for User Story 3
 
-- [ ] T028 [P] [US3] Component test for TaskCard with drag-and-drop in frontend/tests/components/board/TaskCard.test.tsx
-- [ ] T029 [P] [US3] Integration test for move task flow in frontend/tests/integration/MoveTaskFlow.test.tsx
-- [ ] T030 [P] [US3] Test for optimistic update rollback on error in frontend/tests/hooks/useBoard.test.ts
+- [X] T028 [P] [US3] Component test for TaskCard with drag-and-drop in frontend/tests/components/board/TaskCard.test.tsx
+- [X] T029 [P] [US3] Integration test for move task flow in frontend/tests/integration/MoveTaskFlow.test.tsx
+- [X] T030 [P] [US3] Test for optimistic update rollback on error in frontend/tests/hooks/useBoard.test.ts
 
 ### Implementation for User Story 3
 
-- [ ] T031 [P] [US3] Create TaskCard component with useSortable: frontend/src/components/board/TaskCard.tsx
-- [ ] T032 [P] [US3] Create ColumnCard component with SortableContext: frontend/src/components/board/ColumnCard.tsx
-- [ ] T033 [US3] Integrate @dnd-kit DndContext in BoardDetailPage: frontend/src/pages/BoardDetailPage.tsx
-- [ ] T034 [US3] Implement handleDragEnd with taskService.move() in frontend/src/pages/BoardDetailPage.tsx
-- [ ] T035 [US3] Add optimistic update with rollback on error in frontend/src/hooks/useBoard.ts
-- [ ] T036 [US3] Add error notification for failed move in frontend/src/hooks/useBoard.ts
-- [ ] T037 [US3] Add access denied handling for move operation in frontend/src/hooks/useBoard.ts
+- [X] T031 [P] [US3] Create TaskCard component with useSortable: frontend/src/components/board/TaskCard.tsx
+- [X] T032 [P] [US3] Create ColumnCard component with SortableContext: frontend/src/components/board/ColumnCard.tsx
+- [X] T033 [US3] Integrate @dnd-kit DndContext in BoardDetailPage: frontend/src/pages/BoardDetailPage.tsx
+- [X] T034 [US3] Implement handleDragEnd with taskService.move() in frontend/src/pages/BoardDetailPage.tsx
+- [X] T035 [US3] Add optimistic update with rollback on error in frontend/src/hooks/useBoard.ts
+- [X] T036 [US3] Add error notification for failed move in frontend/src/hooks/useBoard.ts
+- [X] T037 [US3] Add access denied handling for move operation in frontend/src/hooks/useBoard.ts
 
-**Checkpoint**: At this point, User Stories 1-3 should all work independently
+**Checkpoint**: At this point, User Stories 1-3 should all work independently ✅
 
 ---
 
