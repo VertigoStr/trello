@@ -196,24 +196,55 @@ async def logout(
 ) -> dict:
     """
     Logout user.
-    
+
     Requires valid JWT token in Authorization header.
     Token is added to blacklist and cannot be reused.
-    
+
     Returns:
     - **message**: Success message
     """
     auth_service = AuthService(db)
-    
+
     # Revoke token (add to blacklist)
     await auth_service.logout(
         user_id=current_user["user_id"],
         token_jti=current_user.get("jti"),
     )
-    
+
     logger.info(f"User logged out: {current_user['email']} (user_id={current_user['user_id']})")
-    
+
     return {
         "status": "success",
         "message": "Successfully logged out",
+    }
+
+
+@router.get(
+    "/me",
+    status_code=status.HTTP_200_OK,
+    summary="Get current user",
+    description="Get current authenticated user information.",
+    response_model=Dict[str, Any],
+)
+async def get_me(
+    current_user: Dict[str, Any] = Depends(get_current_user),
+) -> Dict[str, Any]:
+    """
+    Get current user.
+
+    Requires valid JWT token in Authorization header.
+
+    Returns:
+    - **id**: User's unique identifier
+    - **email**: User's email address
+    - **name**: User's display name
+    - **is_active**: Account status
+    - **created_at**: Account creation timestamp
+    """
+    return {
+        "id": current_user["user_id"],
+        "email": current_user["email"],
+        "name": current_user["name"],
+        "is_active": current_user.get("is_active", True),
+        "created_at": current_user.get("created_at"),
     }

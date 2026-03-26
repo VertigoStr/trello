@@ -163,13 +163,10 @@ export async function resetPassword(
  * Get current user data.
  */
 export async function getCurrentUser(): Promise<User> {
-  const response = await fetchWithAuth<MeResponse>(`${API_BASE}/api/auth/me`)
+  const response = await fetchWithAuth(`${API_BASE}/api/auth/me`)
 
-  if (response.status === 'success') {
-    return response.data.user
-  }
-
-  throw new Error('Failed to get user data')
+  // Backend returns user data directly: {id, email, name, is_active, created_at}
+  return response as User
 }
 
 export const authService = {
