@@ -76,67 +76,6 @@ async def create_board(
         )
 
 
-@router.get("", response_model=dict, status_code=200)
-async def list_boards(
-    page: Optional[int] = Query(1, ge=1, description="Page number"),
-    limit: Optional[int] = Query(20, ge=1, le=100, description="Items per page"),
-    status_filter: Optional[str] = Query(None, description="Filter by status (active/archived)"),
-    current_user: dict = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
-) -> dict:
-    """
-    List all boards for the current user.
-    
-    - **page**: Page number (1-based, default: 1)
-    - **limit**: Items per page (1-100, default: 20)
-    - **status**: Filter by status (active/archived, optional)
-    
-    Returns boards where user is owner or member.
-    """
-    board_service = BoardService(db)
-
-    # Parse status filter (as string, not enum)
-    status_value = None
-    if status_filter:
-        if status_filter not in ['active', 'archived']:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail={
-                    "code": "INVALID_STATUS",
-                    "message": "Status must be 'active' or 'archived'",
-                },
-            )
-        status_value = status_filter
-
-    boards, total = await board_service.get_boards_for_user(
-        user_id=current_user["user_id"],
-        page=page,
-        limit=limit,
-        status=status_value,
-    )
-    
-    return {
-        "boards": [
-            BoardResponse(
-                id=b.id,
-                title=b.title,
-                description=b.description,
-                owner_id=b.owner_id,
-                status=b.status,
-                created_at=b.created_at,
-                updated_at=b.updated_at,
-            )
-            for b in boards
-        ],
-        "pagination": {
-            "page": page,
-            "limit": limit,
-            "total": total,
-            "total_pages": (total + limit - 1) // limit,
-        },
-    }
-
-
 @router.get(
     "/{board_id}",
     response_model=BoardResponse,
@@ -586,3 +525,64 @@ async def move_column(
         created_at=moved.created_at,
         updated_at=moved.updated_at,
     )
+
+
+# List boards endpoint (must be AFTER /boards/{board_id} to avoid conflicts)
+@router.get("/boards", response_model=dict, status_code=200)
+async def list_boards(
+    page: int = Query(default=1, ge=1, description="Page number"),
+    limit: int = Query(default=20, ge=1, le=100, description="Items per page"),
+    status_filter: Optional[str] = Query(default=None, description="Filter by status (active/archived)"),
+    current_user: dict = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+) -> dict:
+    """
+    List all boards for the current user.
+
+    - **page**: Page number (1-based, default: 1)
+    - **limit**: Items per page (1-100, default: 20)
+    - **status**: Filter by status (active/archived, optional)
+
+    Returns boards where user is owner or member.
+    """
+    board_service = BoardService(db)
+
+    # Parse status filter (as string, not enum)
+    status_value = None
+    if status_filter:
+        if status_filter not in ['active', 'archived']:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail={
+                    "code": "INVALID_STATUS",
+                    "message": "Status must be 'active' or 'archived'",
+                },
+            )
+
+    boards, total = await board_service.get_boards_for_user(
+        user_id=current_user["user_id"],
+        page=page,
+        limit=limit,
+        status=status_value,
+    )
+
+    return {
+        "boards": [
+            BoardResponse(
+                id=b.id,
+                title=b.title,
+                description=b.description,
+                owner_id=b.owner_id,
+                status=b.status,
+                created_at=b.created_at,
+                updated_at=b.updated_at,
+            )
+            for b in boards
+        ],
+        "pagination": {
+            "page": page,
+            "limit": limit,
+            "total": total,
+            "total_pages": (total + limit - 1) // limit,
+        },
+    }
