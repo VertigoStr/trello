@@ -38,5 +38,19 @@ services:
     volumes:
       - ./backend/src:/app/src
 
+  # Frontend Web
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: trello-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    environment:
+      VITE_API_URL: http://localhost:8000
+
 volumes:
   postgres_data:
