@@ -47,7 +47,14 @@ export const boardService = {
       `${API_BASE}/api/boards?page=${page}&limit=${limit}`,
       { headers: getAuthHeaders() }
     )
-    const data = await handleResponse<BoardListResponse>(response)
+    
+    const data = await response.json()
+    
+    // Backend returns {boards: [...], pagination: {...}} directly
+    if (data.status === 'error') {
+      throw new Error(data.error?.message || 'Failed to fetch boards')
+    }
+    
     return data.boards || []
   },
 
