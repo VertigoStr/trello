@@ -11,8 +11,8 @@ from src.api.routes.tasks import router as tasks_router
 # Create main router
 router = APIRouter()
 
-# Include auth routes
-router.include_router(auth_router)
+# Include auth routes with /api prefix
+router.include_router(auth_router, prefix="/api")
 
 # Include health routes
 router.include_router(health_router)
