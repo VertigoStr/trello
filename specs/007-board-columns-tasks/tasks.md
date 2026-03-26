@@ -28,9 +28,9 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [P] Verify frontend project structure exists: frontend/src/{components,pages,services,hooks,types}
-- [ ] T002 [P] Verify dependencies installed: frontend/package.json (React, Bootstrap 5, @dnd-kit)
-- [ ] T003 [P] Verify Vitest configured: frontend/vite.config.ts (from 005-frontend-auth)
+- [X] T001 [P] Verify frontend project structure exists: frontend/src/{components,pages,services,hooks,types}
+- [X] T002 [P] Verify dependencies installed: frontend/package.json (React, Bootstrap 5, @dnd-kit)
+- [X] T003 [P] Verify Vitest configured: frontend/vite.config.ts (from 005-frontend-auth)
 
 ---
 
@@ -40,12 +40,12 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 [P] Create column types: frontend/src/types/column.ts (Column, CreateColumnDTO, UpdateColumnDTO)
-- [ ] T005 [P] Create task types: frontend/src/types/task.ts (Task, CreateTaskDTO, UpdateTaskDTO, MoveTaskDTO)
-- [ ] T006 [P] Create columnService: frontend/src/services/columnService.ts (API integration for columns)
-- [ ] T007 [P] Create taskService: frontend/src/services/taskService.ts (API integration for tasks)
-- [ ] T008 [P] Create useBoard hook: frontend/src/hooks/useBoard.ts (state management for board with polling)
-- [ ] T009 [P] Install @dnd-kit dependencies: frontend/package.json (@dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities)
+- [X] T004 [P] Create column types: frontend/src/types/column.ts (Column, CreateColumnDTO, UpdateColumnDTO)
+- [X] T005 [P] Create task types: frontend/src/types/task.ts (Task, CreateTaskDTO, UpdateTaskDTO, MoveTaskDTO)
+- [X] T006 [P] Create columnService: frontend/src/services/columnService.ts (API integration for columns)
+- [X] T007 [P] Create taskService: frontend/src/services/taskService.ts (API integration for tasks)
+- [X] T008 [P] Create useBoard hook: frontend/src/hooks/useBoard.ts (state management for board with polling)
+- [X] T009 [P] Install @dnd-kit dependencies: frontend/package.json (@dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
