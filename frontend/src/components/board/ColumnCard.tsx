@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Dropdown } from 'react-bootstrap'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { TaskCard } from './TaskCard'
 import type { Column } from '@/types/column'
@@ -13,9 +13,10 @@ interface ColumnCardProps {
   column: Column
   tasks: Task[]
   onAddTask: () => void
+  onTaskDelete?: (task: Task) => void
 }
 
-export function ColumnCard({ column, tasks, onAddTask }: ColumnCardProps) {
+export function ColumnCard({ column, tasks, onAddTask, onTaskDelete }: ColumnCardProps) {
   return (
     <Card className="h-100">
       <Card.Header className="d-flex justify-content-between align-items-center bg-white">
@@ -34,7 +35,7 @@ export function ColumnCard({ column, tasks, onAddTask }: ColumnCardProps) {
           strategy={verticalListSortingStrategy}
         >
           {tasks.map(task => (
-            <TaskCard key={task.id} task={task} />
+            <TaskCard key={task.id} task={task} onDelete={onTaskDelete ? () => onTaskDelete(task) : undefined} />
           ))}
         </SortableContext>
         {tasks.length === 0 && (

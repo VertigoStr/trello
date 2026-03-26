@@ -160,18 +160,18 @@
 
 ### Tests for User Story 5
 
-- [ ] T045 [P] [US5] Component test for DeleteConfirmModal in frontend/tests/components/modals/DeleteConfirmModal.test.tsx
-- [ ] T046 [P] [US5] Integration test for delete task flow in frontend/tests/integration/DeleteTaskFlow.test.tsx
+- [X] T045 [P] [US5] Component test for DeleteConfirmModal in frontend/tests/components/modals/DeleteConfirmModal.test.tsx
+- [X] T046 [P] [US5] Integration test for delete task flow in frontend/tests/integration/DeleteTaskFlow.test.tsx
 
 ### Implementation for User Story 5
 
-- [ ] T047 [P] [US5] Create DeleteConfirmModal component: frontend/src/components/modals/DeleteConfirmModal.tsx
-- [ ] T048 [US5] Add confirmation dialog before delete in frontend/src/components/modals/DeleteConfirmModal.tsx
-- [ ] T049 [US5] Integrate with taskService.delete() in frontend/src/services/taskService.ts
-- [ ] T050 [US5] Add optimistic update with rollback in frontend/src/hooks/useBoard.ts
-- [ ] T051 [US5] Add error handling for access denied in frontend/src/hooks/useBoard.ts
+- [X] T047 [P] [US5] Create DeleteConfirmModal component: frontend/src/components/modals/DeleteConfirmModal.tsx
+- [X] T048 [US5] Add confirmation dialog before delete in frontend/src/components/modals/DeleteConfirmModal.tsx
+- [X] T049 [US5] Integrate with taskService.delete() in frontend/src/services/taskService.ts
+- [X] T050 [US5] Add optimistic update with rollback in frontend/src/hooks/useBoard.ts
+- [X] T051 [US5] Add error handling for access denied in frontend/src/hooks/useBoard.ts
 
-**Checkpoint**: At this point, User Stories 1-5 should all work independently
+**Checkpoint**: At this point, User Stories 1-5 should all work independently ✅
 
 ---
 

@@ -9,22 +9,28 @@ import { DndContext, DragEndEvent } from '@dnd-kit/core'
 import { boardService } from '@/services/boardService'
 import { useBoard } from '@/hooks/useBoard'
 import { ColumnCard } from '@/components/board/ColumnCard'
+import { TaskCard } from '@/components/board/TaskCard'
 import { CreateColumnModal } from '@/components/modals/CreateColumnModal'
 import { CreateTaskModal } from '@/components/modals/CreateTaskModal'
+import { EditTaskModal } from '@/components/modals/EditTaskModal'
+import { DeleteConfirmModal } from '@/components/modals/DeleteConfirmModal'
 import { EditBoardModal } from '@/components/boards/EditBoardModal'
 import { DeleteBoardModal } from '@/components/boards/DeleteBoardModal'
 import type { Board } from '@/types/board'
+import type { Task } from '@/types/task'
 
 export function BoardDetailPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { board, columns, tasks, loading, error, createColumn, createTask, moveTask } = useBoard(id!)
+  const { board, columns, tasks, loading, error, createColumn, createTask, moveTask, deleteTask } = useBoard(id!)
   const [showCreateColumnModal, setShowCreateColumnModal] = useState(false)
   const [showCreateTaskModal, setShowCreateTaskModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
   const [selectedColumnId, setSelectedColumnId] = useState<string | null>(null)
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null)
+  const [showDeleteTaskModal, setShowDeleteTaskModal] = useState(false)
 
   /**
    * Handle drag end.
@@ -67,6 +73,25 @@ export function BoardDetailPage() {
   const handleAddTask = (columnId: string) => {
     setSelectedColumnId(columnId)
     setShowCreateTaskModal(true)
+  }
+
+  /**
+   * Handle delete task click.
+   */
+  const handleDeleteTask = (task: Task) => {
+    setSelectedTask(task)
+    setShowDeleteTaskModal(true)
+  }
+
+  /**
+   * Handle delete task confirmation.
+   */
+  const handleDeleteTaskConfirm = async () => {
+    if (selectedTask) {
+      await deleteTask(selectedTask.id)
+      setShowDeleteTaskModal(false)
+      setSelectedTask(null)
+    }
   }
 
   /**
@@ -150,6 +175,7 @@ export function BoardDetailPage() {
                 column={column}
                 tasks={tasks[column.id] || []}
                 onAddTask={() => handleAddTask(column.id)}
+                onTaskDelete={handleDeleteTask}
               />
             </div>
           ))}
@@ -210,6 +236,18 @@ export function BoardDetailPage() {
         onHide={() => setShowDeleteModal(false)}
         board={board}
         onSuccess={handleDeleteSuccess}
+      />
+
+      {/* Delete task modal */}
+      <DeleteConfirmModal
+        show={showDeleteTaskModal}
+        onHide={() => {
+          setShowDeleteTaskModal(false)
+          setSelectedTask(null)
+        }}
+        itemName={selectedTask?.title || ''}
+        itemType="task"
+        onDelete={handleDeleteTaskConfirm}
       />
     </Container>
   )
