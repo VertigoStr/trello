@@ -5,7 +5,7 @@
 import React, { useState } from 'react'
 import { Container, Spinner, Alert, Button, Card, Dropdown } from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
-import { DndContext, DragEndEvent } from '@dnd-kit/core'
+import { DndContext, DragEndEvent, DragOverlay } from '@dnd-kit/core'
 import { boardService } from '@/services/boardService'
 import { useBoard } from '@/hooks/useBoard'
 import { ColumnCard } from '@/components/board/ColumnCard'
@@ -37,6 +37,7 @@ export function BoardDetailPage() {
   const [showDeleteTaskModal, setShowDeleteTaskModal] = useState(false)
   const [showEditColumnModal, setShowEditColumnModal] = useState(false)
   const [showDeleteColumnModal, setShowDeleteColumnModal] = useState(false)
+  const [activeTaskId, setActiveTaskId] = useState<string | null>(null)
 
   /**
    * Handle drag end.
@@ -44,18 +45,45 @@ export function BoardDetailPage() {
   const handleDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event
 
+    setActiveTaskId(null)
+
     if (!over) return
 
     const taskId = active.id as string
-    const newColumnId = over.id as string
 
-    if (taskId && newColumnId) {
+    // Find the target column - over.id could be a task id or column id
+    let targetColumnId: string | null = null
+
+    // Check if over.id is a column id (exists in columns array)
+    const isColumnId = columns.some(col => col.id === over.id)
+
+    if (isColumnId) {
+      targetColumnId = over.id as string
+    } else {
+      // over.id is likely a task id, find which column it belongs to
+      for (const column of columns) {
+        const columnTasks = tasks[column.id] || []
+        if (columnTasks.some(t => t.id === over.id)) {
+          targetColumnId = column.id
+          break
+        }
+      }
+    }
+
+    if (taskId && targetColumnId) {
       try {
-        await moveTask(taskId, { columnId: newColumnId, position: 0 })
+        await moveTask(taskId, { columnId: targetColumnId, position: 0 })
       } catch (err) {
         // Error is handled by useBoard hook (rollback + error message)
       }
     }
+  }
+
+  /**
+   * Handle drag start.
+   */
+  const handleDragStart = (event: DragEndEvent) => {
+    setActiveTaskId(event.active.id as string)
   }
 
   /**
@@ -224,7 +252,7 @@ export function BoardDetailPage() {
       </div>
 
       {/* Columns */}
-      <DndContext onDragEnd={handleDragEnd}>
+      <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
         <div className="d-flex gap-3 overflow-auto pb-3" style={{ minHeight: '400px' }}>
           {columns.map(column => (
             <div key={column.id} style={{ minWidth: '300px', maxWidth: '300px' }}>
@@ -239,6 +267,17 @@ export function BoardDetailPage() {
             </div>
           ))}
         </div>
+        <DragOverlay>
+          {activeTaskId ? (
+            <div style={{ transform: 'rotate(3deg)', opacity: 0.8 }}>
+              <Card className="shadow-lg">
+                <Card.Body className="p-3">
+                  <Card.Title className="mb-2 h6">Перетаскивание задачи...</Card.Title>
+                </Card.Body>
+              </Card>
+            </div>
+          ) : null}
+        </DragOverlay>
       </DndContext>
 
       {/* Back button */}

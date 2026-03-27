@@ -4,7 +4,9 @@
 
 import type { Task, CreateTaskDTO, UpdateTaskDTO, MoveTaskDTO } from '@/types/task'
 
-const API_BASE = (import.meta as any).env.VITE_API_URL || 'http://localhost:8000'
+// Use relative path for production (nginx proxies /api to backend:8000)
+// Paths already include /api prefix
+const API_BASE = ''
 
 /**
  * Get authentication headers.
@@ -73,10 +75,15 @@ export const taskService = {
    * Move a task to a new column/position.
    */
   async move(taskId: string, data: MoveTaskDTO): Promise<Task> {
+    // Convert camelCase to snake_case for backend
+    const requestBody = {
+      column_id: data.columnId,
+      position: data.position,
+    }
     const response = await fetch(`${API_BASE}/api/tasks/${taskId}/move`, {
       method: 'POST',
       headers: getAuthHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify(requestBody),
     })
     return handleResponse<Task>(response)
   },
@@ -88,6 +95,17 @@ export const taskService = {
     const response = await fetch(`${API_BASE}/api/boards/${boardId}/tasks`, {
       headers: getAuthHeaders(),
     })
-    return handleResponse<Task[]>(response)
+    const data = await response.json()
+    // Backend returns { tasks: [...], pagination: {...} }
+    const tasks = (data.tasks || data) as any[]
+    // Convert snake_case to camelCase
+    return tasks.map(t => ({
+      ...t,
+      columnId: t.column_id,
+      assigneeId: t.assignee_id,
+      isDeleted: t.is_deleted,
+      createdAt: t.created_at,
+      updatedAt: t.updated_at,
+    })) as Task[]
   },
 }

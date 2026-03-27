@@ -88,15 +88,29 @@ async def list_tasks(
         limit=limit,
     )
 
-    return {
-        "tasks": tasks,
-        "pagination": {
+    return TaskListResponse(
+        tasks=[
+            TaskResponse(
+                id=t.id,
+                column_id=t.column_id,
+                title=t.title,
+                description=t.description,
+                assignee_id=t.assignee_id,
+                position=t.position,
+                is_deleted=t.is_deleted,
+                created_at=t.created_at,
+                updated_at=t.updated_at,
+                version=t.version,
+            )
+            for t in tasks
+        ],
+        pagination={
             "page": page,
             "limit": limit,
             "total": total,
             "total_pages": (total + limit - 1) // limit,
         },
-    }
+    )
 
 
 @router.get("/tasks/{task_id}", response_model=TaskResponse)

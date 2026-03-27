@@ -9,7 +9,9 @@ import type {
   BoardListResponse,
 } from '@/types/board'
 
-const API_BASE = (import.meta as any).env.VITE_API_URL || 'http://localhost:8000'
+// Use relative path for production (nginx proxies /api to backend:8000)
+// Paths already include /api prefix
+const API_BASE = ''
 
 /**
  * Get authentication headers.

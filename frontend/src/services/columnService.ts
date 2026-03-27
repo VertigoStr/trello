@@ -4,7 +4,9 @@
 
 import type { Column, CreateColumnDTO, UpdateColumnDTO } from '@/types/column'
 
-const API_BASE = (import.meta as any).env.VITE_API_URL || 'http://localhost:8000'
+// Use relative path for production (nginx proxies /api to backend:8000)
+// Paths already include /api prefix
+const API_BASE = ''
 
 /**
  * Get authentication headers.
@@ -88,6 +90,7 @@ export const columnService = {
     const response = await fetch(`${API_BASE}/api/boards/${boardId}/columns`, {
       headers: getAuthHeaders(),
     })
-    return handleResponse<Column[]>(response)
+    const data = await response.json()
+    return (Array.isArray(data) ? data : data.data || data) as Column[]
   },
 }

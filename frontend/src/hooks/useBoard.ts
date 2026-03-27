@@ -55,11 +55,11 @@ export function useBoard(boardId: string): UseBoardReturn {
    */
   const fetchBoard = useCallback(async () => {
     try {
-      const [boardData, columnsData, tasksData] = await Promise.all([
-        boardService.getById(boardId),
-        columnService.getByBoard(boardId),
-        taskService.getByBoard(boardId),
-      ])
+      // Fetch sequentially to ensure columns are loaded before tasks
+      const boardData = await boardService.getById(boardId)
+      const columnsData = await columnService.getByBoard(boardId)
+      const tasksData = await taskService.getByBoard(boardId)
+
       setBoard(boardData)
       setColumns(Array.isArray(columnsData) ? columnsData : [])
 
@@ -73,6 +73,7 @@ export function useBoard(boardId: string): UseBoardReturn {
           tasksByColumn[task.columnId].push(task)
         })
       }
+
       setTasks(tasksByColumn)
       setError(null)
     } catch (err) {
