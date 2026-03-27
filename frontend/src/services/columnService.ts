@@ -23,12 +23,12 @@ function getAuthHeaders(): HeadersInit {
 async function handleResponse<T>(response: Response): Promise<T> {
   const data = await response.json()
 
-  if (data.status === 'error') {
-    throw new Error(data.error.message)
+  if (!response.ok || data.status === 'error') {
+    throw new Error(data.error?.message || data.detail?.message || 'API error')
   }
 
   // Backend can return data directly or wrapped in {status, data}
-  return data.data || data
+  return (data.data || data) as T
 }
 
 /**
