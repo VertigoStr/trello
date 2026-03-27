@@ -211,9 +211,21 @@ export function BoardDetailPage() {
         </Card.Body>
       </Card>
 
+      {/* Columns header with add button */}
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h5 className="mb-0">Колонки</h5>
+        <Button
+          variant="primary"
+          size="sm"
+          onClick={() => setShowCreateColumnModal(true)}
+        >
+          + Добавить колонку
+        </Button>
+      </div>
+
       {/* Columns */}
       <DndContext onDragEnd={handleDragEnd}>
-        <div className="d-flex gap-3 overflow-auto pb-3">
+        <div className="d-flex gap-3 overflow-auto pb-3" style={{ minHeight: '400px' }}>
           {columns.map(column => (
             <div key={column.id} style={{ minWidth: '300px', maxWidth: '300px' }}>
               <ColumnCard
@@ -226,20 +238,6 @@ export function BoardDetailPage() {
               />
             </div>
           ))}
-          
-          {/* Add column button */}
-          <div style={{ minWidth: '300px', maxWidth: '300px' }}>
-            <Card className="h-100">
-              <Card.Body className="d-flex align-items-center justify-content-center">
-                <Button
-                  variant="outline-secondary"
-                  onClick={() => setShowCreateColumnModal(true)}
-                >
-                  + Добавить колонку
-                </Button>
-              </Card.Body>
-            </Card>
-          </div>
         </div>
       </DndContext>
 
