@@ -30,7 +30,7 @@ async def create_task(
     column_id: UUID,
     task_data: TaskCreate,
     db: AsyncSession = Depends(get_db),
-    current_user: UUID = Depends(get_current_user),
+    current_user: dict = Depends(get_current_user),
 ):
     """
     Create a new task in a column.
@@ -49,7 +49,7 @@ async def create_task(
         task = await task_service.create_task(
             column_id=column_id,
             title=task_data.title,
-            creator_id=current_user,
+            creator_id=current_user["user_id"],
             description=task_data.description,
             assignee_id=task_data.assignee_id,
         )
@@ -66,7 +66,7 @@ async def list_tasks(
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
     db: AsyncSession = Depends(get_db),
-    current_user: UUID = Depends(get_current_user),
+    current_user: dict = Depends(get_current_user),
 ):
     """
     List tasks with optional filtering and pagination.
@@ -104,7 +104,7 @@ async def get_task(
     task_id: UUID,
     if_none_match: Optional[str] = Header(None, alias="If-None-Match"),
     db: AsyncSession = Depends(get_db),
-    current_user: UUID = Depends(get_current_user),
+    current_user: dict = Depends(get_current_user),
 ):
     """
     Get a task by ID.
@@ -140,7 +140,7 @@ async def update_task(
     task_data: TaskUpdate,
     if_match: Optional[str] = Header(None, alias="If-Match"),
     db: AsyncSession = Depends(get_db),
-    current_user: UUID = Depends(get_current_user),
+    current_user: dict = Depends(get_current_user),
 ):
     """
     Update a task with optimistic locking.
@@ -207,7 +207,7 @@ async def move_task(
     task_id: UUID,
     move_data: TaskMove,
     db: AsyncSession = Depends(get_db),
-    current_user: UUID = Depends(get_current_user),
+    current_user: dict = Depends(get_current_user),
 ):
     """
     Move a task to a different column and/or position.
@@ -237,7 +237,7 @@ async def move_task(
 async def delete_task(
     task_id: UUID,
     db: AsyncSession = Depends(get_db),
-    current_user: UUID = Depends(get_current_user),
+    current_user: dict = Depends(get_current_user),
 ):
     """
     Soft delete a task.
@@ -260,7 +260,7 @@ async def delete_task(
 async def unassign_task(
     task_id: UUID,
     db: AsyncSession = Depends(get_db),
-    current_user: UUID = Depends(get_current_user),
+    current_user: dict = Depends(get_current_user),
 ):
     """
     Unassign yourself from a task.
