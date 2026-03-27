@@ -32,7 +32,8 @@ async function handleResponse<T>(response: Response): Promise<T> {
     throw new Error(data.error.message)
   }
 
-  return data.data
+  // Backend can return data directly or wrapped in {status, data}
+  return data.data || data
 }
 
 /**
