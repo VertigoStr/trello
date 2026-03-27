@@ -61,16 +61,18 @@ export function useBoard(boardId: string): UseBoardReturn {
         taskService.getByBoard(boardId),
       ])
       setBoard(boardData)
-      setColumns(columnsData)
-      
+      setColumns(Array.isArray(columnsData) ? columnsData : [])
+
       // Group tasks by column
       const tasksByColumn: Record<string, Task[]> = {}
-      tasksData.forEach((task: Task) => {
-        if (!tasksByColumn[task.columnId]) {
-          tasksByColumn[task.columnId] = []
-        }
-        tasksByColumn[task.columnId].push(task)
-      })
+      if (Array.isArray(tasksData)) {
+        tasksData.forEach((task: Task) => {
+          if (!tasksByColumn[task.columnId]) {
+            tasksByColumn[task.columnId] = []
+          }
+          tasksByColumn[task.columnId].push(task)
+        })
+      }
       setTasks(tasksByColumn)
       setError(null)
     } catch (err) {
