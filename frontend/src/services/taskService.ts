@@ -38,8 +38,8 @@ export const taskService = {
   /**
    * Create a new task.
    */
-  async create(columnId: string, data: CreateTaskDTO): Promise<Task> {
-    const response = await fetch(`${API_BASE}/api/columns/${columnId}/tasks`, {
+  async create(boardId: string, columnId: string, data: CreateTaskDTO): Promise<Task> {
+    const response = await fetch(`${API_BASE}/api/boards/${boardId}/columns/${columnId}/tasks`, {
       method: 'POST',
       headers: getAuthHeaders(),
       body: JSON.stringify(data),

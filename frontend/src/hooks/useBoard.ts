@@ -118,13 +118,13 @@ export function useBoard(boardId: string): UseBoardReturn {
    * Create a new task.
    */
   const createTask = useCallback(async (columnId: string, data: CreateTaskDTO): Promise<Task> => {
-    const task = await taskService.create(columnId, data)
+    const task = await taskService.create(boardId, columnId, data)
     setTasks(prev => ({
       ...prev,
       [columnId]: [...(prev[columnId] || []), task],
     }))
     return task
-  }, [])
+  }, [boardId])
 
   /**
    * Update a task.
