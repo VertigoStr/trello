@@ -74,7 +74,7 @@ export const taskService = {
    */
   async move(taskId: string, data: MoveTaskDTO): Promise<Task> {
     const response = await fetch(`${API_BASE}/api/tasks/${taskId}/move`, {
-      method: 'PUT',
+      method: 'POST',
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
     })
