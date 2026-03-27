@@ -88,10 +88,6 @@ export const columnService = {
     const response = await fetch(`${API_BASE}/api/boards/${boardId}/columns`, {
       headers: getAuthHeaders(),
     })
-    const data = await response.json()
-    if (data.status === 'error') {
-      throw new Error(data.error.message)
-    }
-    return data.data || []
+    return handleResponse<Column[]>(response)
   },
 }
